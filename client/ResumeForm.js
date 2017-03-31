@@ -33,21 +33,20 @@ const createJobList = listFuncFactory(
   }
 );
 
-// const createEducation = listFuncFactory(
-//   /*
-//     creates div for job info
-//   */
-//   (school, i) => {
-//     return (
-//       <div key={i}>
-//         <h4>{school.school}, {job.title}</h4>
-//         <p>{job.start} - {job.end}</p>
-//         <p>{job.location}</p>
-//         <p>{job.content}</p>
-//       </div>
-//     )
-//   }
-// );
+const createSchoolList = listFuncFactory(
+  /*
+    creates div for job info
+  */
+  (school, i) => {
+    return (
+      <div key={i}>
+        <h4>{school.school} - {school.major}, {school.degree}</h4>
+        <p>{school.start} - {school.end}</p>
+        <p>{school.location}</p>
+      </div>
+    )
+  }
+);
 
 class ResumeForm extends Component {
   /*
@@ -96,6 +95,7 @@ class ResumeForm extends Component {
     const portfolio = createStringList(this.state.portfolio);
     const skills = createStringList(this.state.skills);
     const experience = createJobList(this.state.experience);
+    const education = createSchoolList(this.state.education);
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -113,7 +113,7 @@ class ResumeForm extends Component {
         <ul>{experience}</ul>
 
         <h3>Education</h3>
-
+        <ul>{education}</ul>
       
         <button>Save</button>
       </form>
