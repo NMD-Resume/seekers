@@ -17,10 +17,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // allows any site to displayed in an iframe
-app.use((req, res) => res.set('X-Frame-Options', ''));
 
-// testing iframes in index.html
-express.static('./..');
+// serve index.html
+app.use(express.static(__dirname + '/..'));
 
 const userRouter = express.Router();
 
