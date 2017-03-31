@@ -10,12 +10,7 @@ class ResumeForm extends Component {
     super(props);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-
-    // TODO: post data to server 
-    console.log('submitted');
-  }
+  
 
   render() {
     const toListItem = (item, i) => <li key={item}>{item}</li>;
@@ -30,7 +25,7 @@ class ResumeForm extends Component {
     );
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.props.handleSubmit}>
         
         <h3>Summary</h3>
         <input

@@ -46,7 +46,6 @@ class ResumeContainer extends Component {
 
   summaryChangeHandler(event, text) {
     console.log(text);
-
     // replaces the summary property in the state.resume object
     const newResume = {};
     Object.assign(newResume, this.state.resume, {summary: event.target.value});
@@ -54,12 +53,20 @@ class ResumeContainer extends Component {
       resume: newResume
     });
   }
+  
+  handleSubmit(e) {
+    e.preventDefault();
+
+    // TODO: post data to server 
+    console.log('submitted');
+  }
 
   render() {
     return (this.state.loggedIn) ?
       <ResumeForm
         resume={this.state.resume}
-        summaryChangeHandler={(event) => this.summaryChangeHandler(event)}
+        summaryChangeHandler={this.summaryChangeHandler.bind(this)}
+        handleSubmit={this.handleSubmit.bind(this)}
       />
       :
       <ResumeDisplay resume={this.state.resume} />
