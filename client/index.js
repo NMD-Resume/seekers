@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ResumeForm from './ResumeForm';
 
 ReactDOM.render(
-  <h1>Ayyyyy, resumayyyy</h1>,
+  <ResumeForm />,
   document.getElementById('root')
 );
