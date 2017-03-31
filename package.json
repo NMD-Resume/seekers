@@ -6,10 +6,17 @@
   "author": "Derek Miranda <derek.miranda.1992@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "mongo": "^0.1.0",
     "mongoose": "^4.9.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.3.2"
   }
 }
