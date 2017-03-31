@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const userController = require('./UserController');
+// const userController = require('./UserController');
 
 const PORT = 3000;
 
@@ -16,16 +16,9 @@ mongoose.connection.once('open', () => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// app.post('/', (req, res) => {
-//   res.json('whatever');
-// })
+app.use(express.static(__dirname + '/..'));
 
 const userRouter = express.Router();
-
-// userRouter.get('/', (req, res) => {
-//   res.json('hello world');
-//   return;
-// });
 
 app.post('/', userController.createUser);
 

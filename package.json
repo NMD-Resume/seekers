@@ -14,7 +14,7 @@
     "react-dom": "^15.4.2"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "webpack": "webpack -w",
     "wds": "webpack-dev-server --progress"
   },
