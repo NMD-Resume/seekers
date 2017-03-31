@@ -16,15 +16,24 @@ mongoose.connection.once('open', () => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// app.post('/', (req, res) => {
+//   res.json('whatever');
+// })
+
 const userRouter = express.Router();
 
-userRouter.post('/', userController.createUser);
+// userRouter.get('/', (req, res) => {
+//   res.json('hello world');
+//   return;
+// });
 
-userRouter.get('/:username', userController.getUser);
+app.post('/', userController.createUser);
 
-userRouter.patch('/:username', userController.updateUser);
+app.get('/:username', userController.getUser);
 
-userRouter.delete('/:username', userController.deleteUser);
+app.patch('/:username', userController.updateUser);
+
+app.delete('/:username', userController.deleteUser);
 
 
 
