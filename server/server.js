@@ -18,12 +18,20 @@ app.use(bodyParser.json());
 
 const userRouter = express.Router();
 
+// Create a user in the database
+// localhost://3000/
 userRouter.post('/', userController.createUser);
 
+// Get a user from the database
+// localhost://3000//"username"
 userRouter.get('/:username', userController.getUser);
 
+// Change a user's name
+// localhost://3000/"username"
 userRouter.patch('/:username', userController.updateUser);
 
+// Delete a user from the database
+// localhost://3000/"username"
 userRouter.delete('/:username', userController.deleteUser);
 
 
