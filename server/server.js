@@ -60,8 +60,10 @@ app.get('/resume', sessionController.isLoggedIn, (req, res) => {
 });
 
 // Get a user from the database
+// specify seeker or hunter in type (seek or hunt)
+// then username of seeker/hunter
 // localhost://3000//"username"
-// app.get('/:username', userController.getUser);
+app.get('/:type/:username', userController.getUser);
 
 // Change a user's name
 // localhost://3000/"username"
@@ -92,6 +94,9 @@ app.delete('/:username', userController.deleteUser);
 // })
 
 app.use(express.static(path.join(__dirname, '/../')));
+
+// 404 error
+app.get('*', (req, res) => res.status(404).send('This page does not exist!'));
 
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
