@@ -113,7 +113,7 @@ export class SchoolInput extends Component {
     return (
       <div>
         {inputs}
-        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSchool(this.props.index)}>x</button>
+        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSchool(this.props.index)}>Remove School</button>
       </div>
     );
   }
