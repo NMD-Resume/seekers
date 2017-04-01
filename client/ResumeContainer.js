@@ -7,9 +7,11 @@ import ReactDOM from 'react-dom';
 import ResumeForm from './ResumeForm';
 import ResumeDisplay from './ResumeDisplay';
 import fetch from 'node-fetch';
+import queryStr from 'query-string';
 
-// temp url, getting data for 'derek'
+// temp urls for moving data b/w API
 const getResumeUrl = 'http://localhost:3000/seek/derek';
+const patchResumeUrl = 'http://localhost:3000/derek';
 
 class ResumeContainer extends Component {
   constructor() {
@@ -25,9 +27,16 @@ class ResumeContainer extends Component {
     // function to bind setState to the component during async function
     const setResume = (resume) => this.setState.call(this, { resume });
 
+    // makes request and gets resume json data
     (async function () {
       const res = await fetch(getResumeUrl);
       const resumeData = await res.json();
+
+      // remove _id since unnecessary
+      // as well as to avoid Mongoose error that occurs 
+      // when trying to update that property
+      // delete resumeData._id;
+
       setResume(resumeData);
     })();
   }
@@ -36,12 +45,12 @@ class ResumeContainer extends Component {
   summaryChangeHandler(event) {
     // replaces the summary property in the state.resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {summary: event.target.value});
+    Object.assign(newResume, this.state.resume, { summary: event.target.value });
     this.setState({
       resume: newResume
     });
   }
-  
+
   portfolioChangeHandler(event, index, projectProp) {
     // copy portfolio array
     const newLinks = this.state.resume.portfolio.slice();
@@ -51,7 +60,7 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {portfolio: newLinks});
+    Object.assign(newResume, this.state.resume, { portfolio: newLinks });
 
     this.setState({
       resume: newResume
@@ -67,7 +76,7 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {skills: newSkills});
+    Object.assign(newResume, this.state.resume, { skills: newSkills });
 
     this.setState({
       resume: newResume
@@ -83,7 +92,7 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {experience: newExperience});
+    Object.assign(newResume, this.state.resume, { experience: newExperience });
 
     this.setState({
       resume: newResume
@@ -99,18 +108,42 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {education: newEducation});
+    Object.assign(newResume, this.state.resume, { education: newEducation });
 
     this.setState({
       resume: newResume
     });
   }
-  
+
   handleSubmit(e) {
+    // prevent refresh
     e.preventDefault();
 
-    // TODO: post data to server 
-    console.log(this.state.resume);
+    // for node-fetch requests,
+    // need to convert json body to a query string (e.g. "name=dude&key=value")
+    // using query-string's stringify method
+    const body = queryStr.stringify(this.state.resume);
+    console.log(body);
+
+    // function to bind setState to the component during async function
+    const setResume = (resume) => this.setState.call(this, { resume });
+o
+    // make a patch request to update the current resume
+    (async function () {
+      try {
+        const res = await fetch(patchResumeUrl, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body
+        });
+        const result = await res.json();
+        console.log(result);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
   }
 
   render() {
@@ -126,16 +159,16 @@ class ResumeContainer extends Component {
       />
       :
       <ResumeDisplay resume={this.state.resume} />;
-    
+
     return (
       <div>
-      {
-        (this.state.resume)
-        ?
-        resumePage
-        :
-        <p>Loading resume...</p>
-      }
+        {
+          (this.state.resume)
+            ?
+            resumePage
+            :
+            <p>Loading resume...</p>
+        }
       </div>
     )
   }

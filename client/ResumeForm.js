@@ -6,10 +6,6 @@ class ResumeForm extends Component {
   /*
     Form to send resume data to server
   */
-  constructor(props) {
-    super(props);
-  }
-
   render() {
 
     // creating list of input groups for each resume section

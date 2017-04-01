@@ -57,8 +57,6 @@ const seekSchema = new Schema ({
   skills: [String],
   experience: [experienceSchema],
   education: [educationSchema]
-})
-
-
+});
 
 module.exports = mongoose.model('Seek', seekSchema);

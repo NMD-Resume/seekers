@@ -41,7 +41,7 @@ const UserController = {
 
     if (req.body.type.toLowerCase() === 'seek') {
       User = Seek;
-    } else if (req.params.type.toLowerCase() === 'hunt') {
+    } else if (req.body.type.toLowerCase() === 'hunt') {
       User = Hunt;
     }
 
