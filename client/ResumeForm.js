@@ -23,6 +23,7 @@ class ResumeForm extends Component {
         </li>
       )
     );
+
     const skills = this.props.resume.skills.map(
       (skill, index) => (
         <li key={index}>
@@ -45,6 +46,7 @@ class ResumeForm extends Component {
         />
       )
     );
+
     const education = this.props.resume.education.map(
       (school, index) => <SchoolInput
         school={school}
@@ -67,10 +69,10 @@ class ResumeForm extends Component {
         />
 
         <h3>Portfolio</h3>
-        <ul>{portfolio}</ul>
+        <ol>{portfolio}</ol>
 
         <h3>Skills</h3>
-        <ul>{skills}</ul>
+        <ol>{skills}</ol>
 
         <h3>Experience</h3>
         <ul>{experience}</ul>
