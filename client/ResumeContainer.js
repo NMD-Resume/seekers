@@ -69,7 +69,7 @@ class ResumeContainer extends Component {
     });
   }
 
-  skillsChangeHandler(event) {
+  skillsChangeHandler(event, index) {
     // copy experience array
     const newSkills = this.state.resume.skills.slice();
 
