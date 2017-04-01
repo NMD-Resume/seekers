@@ -77,8 +77,8 @@ app.get('/:type/:username', userController.getUser);
 app.post('/:type', userController.createResume);
 
 // Change a user's name
-// localhost://3000/"username"
-app.patch('/:username', userController.updateUser);
+// localhost://3000/"type"/"username"
+app.patch('/:type/:username', userController.updateUser);
 
 // Delete a user from the database
 // localhost://3000/"username"

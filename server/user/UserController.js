@@ -37,12 +37,14 @@ const UserController = {
     let User;
 
     // if no type specified
-    if (!req.body.type) return next();
+    if (!req.params.type) return next();
 
-    if (req.body.type.toLowerCase() === 'seek') {
+    if (req.params.type.toLowerCase() === 'seek') {
       User = Seek;
-    } else if (req.body.type.toLowerCase() === 'hunt') {
+    } else if (req.params.type.toLowerCase() === 'hunt') {
       User = Hunt;
+    } else {
+      return next();
     }
 
     User.findOneAndUpdate({ username: req.params.username }, req.body, (err, user) => {

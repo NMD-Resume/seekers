@@ -6,12 +6,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ResumeForm from './ResumeForm';
 import ResumeDisplay from './ResumeDisplay';
-import fetch from 'node-fetch';
-import queryStr from 'query-string';
+import fetch from 'isomorphic-fetch';
 
 // temp urls for moving data b/w API
 const getResumeUrl = 'http://localhost:3000/seek/derek';
-const patchResumeUrl = 'http://localhost:3000/derek';
+const patchResumeUrl = 'http://localhost:3000/seek/derek';
 
 class ResumeContainer extends Component {
   constructor() {
@@ -19,6 +18,7 @@ class ResumeContainer extends Component {
     this.state = {
       editing: true,
     };
+    
   }
 
   componentWillMount() {
@@ -41,7 +41,9 @@ class ResumeContainer extends Component {
     })();
   }
 
-  // onChange handlers passed down to inputs
+  /**
+   * onChange handlers passed down to inputs
+   */
   summaryChangeHandler(event) {
     // replaces the summary property in the state.resume object
     const newResume = {};
@@ -115,6 +117,65 @@ class ResumeContainer extends Component {
     });
   }
 
+  /**
+   * TODO: New resume item button handlers
+   * Will add fresh dummy entries into each resume section
+   */
+  createAddNewFunc(item, targetArr) {
+    /**
+     * Creates a function to add an array in this.state.resume object
+     * item - new item inside a resume section
+     * targetArr - key of the array to change within this.state.resume
+     */
+    return () => {
+      // throw err if targetArr not in this.state.resume
+      if (!this.state.resume[targetArr])
+        throw new Error('Invalid resume key. Choose a key mapped to an array.');
+
+      const newArr = this.state.resume[targetArr].concat(item);
+
+      // new resume w/ updated arr
+      const newResume = Object.assign({}, this.state.resume,
+        { [targetArr]: newArr }
+      );
+
+      // then change state
+      this.setState({ resume: newResume });
+    }
+  }
+  
+  addNewProject() {
+    // run function returned by createAddNewFunc
+    (
+      this.createAddNewFunc({}, 'portfolio')
+    )();
+  }
+  
+  addNewSkill() {
+    // run function returned by createAddNewFunc
+    (
+      this.createAddNewFunc('', 'skills')
+    )();
+  }
+
+  addNewJob() {
+    // run function returned by createAddNewFunc
+    (
+      this.createAddNewFunc({}, 'experience')
+    )();
+  }
+
+  addNewSchool() {
+    // run function returned by createAddNewFunc
+    (
+      this.createAddNewFunc({}, 'education')
+    )();
+  }
+
+  /**
+   * Submits data to database
+   * @param {Event} e - event object 
+   */
   handleSubmit(e) {
     // prevent refresh
     e.preventDefault();
@@ -122,20 +183,21 @@ class ResumeContainer extends Component {
     // for node-fetch requests,
     // need to convert json body to a query string (e.g. "name=dude&key=value")
     // using query-string's stringify method
-    const body = queryStr.stringify(this.state.resume);
+    // const body = queryStr.stringify(this.state.resume);
 
     // function to bind setState to the component during async function
     const setResume = (resume) => this.setState.call(this, { resume });
-    
+    const body = JSON.stringify(this.state.resume);
+
     // make a patch request to update the current resume
     (async function () {
       try {
         const res = await fetch(patchResumeUrl, {
           method: 'PATCH',
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
           },
-          body
+          body,
         });
         const result = await res.json();
         console.log(result);
@@ -146,14 +208,22 @@ class ResumeContainer extends Component {
   }
 
   render() {
+    // passes input change and new item handlers
     const resumePage = (this.state.editing) ?
       <ResumeForm
         resume={this.state.resume}
+
         summaryChangeHandler={this.summaryChangeHandler.bind(this)}
         experienceChangeHandler={this.experienceChangeHandler.bind(this)}
         educationChangeHandler={this.educationChangeHandler.bind(this)}
         skillsChangeHandler={this.skillsChangeHandler.bind(this)}
         portfolioChangeHandler={this.portfolioChangeHandler.bind(this)}
+
+        addNewProject={this.addNewProject.bind(this)}
+        addNewSkill={this.addNewSkill.bind(this)}
+        addNewJob={this.addNewJob.bind(this)}
+        addNewSchool={this.addNewSchool.bind(this)}
+
         handleSubmit={this.handleSubmit.bind(this)}
       />
       :

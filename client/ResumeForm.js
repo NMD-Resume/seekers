@@ -66,15 +66,35 @@ class ResumeForm extends Component {
 
         <h3>Portfolio</h3>
         <ol>{portfolio}</ol>
+        <input
+          type='button'
+          onClick={this.props.addNewProject}
+          value='Add New Project'
+        />
 
         <h3>Skills</h3>
         <ol>{skills}</ol>
+        <input
+          type='button'
+          onClick={this.props.addNewSkill}
+          value='Add New Skill'
+        />
 
         <h3>Experience</h3>
         <ul>{experience}</ul>
+        <input
+          type='button'
+          onClick={this.props.addNewJob}
+          value='Add New Job'
+        />
 
         <h3>Education</h3>
         <ul>{education}</ul>
+        <input
+          type='button'
+          onClick={this.props.addNewSchool}
+          value='Add New School'
+        />
 
         <button>Save</button>
       </form>
