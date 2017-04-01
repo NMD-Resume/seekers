@@ -11,10 +11,30 @@ class ResumeForm extends Component {
   }
 
   render() {
-    const toListItem = (item, i) => <li key={item}>{item}</li>;
+    // creating list of input groups for each resume section
+    const portfolio = this.props.resume.portfolio.map(
+      (link, index) => (
+        <li key={index}>
+          <input
+            type='text'
+            value={link}
+            onChange={event => this.props.portfolioChangeHandler(event, index)}
+          />
+        </li>
+      )
+    );
+    const skills = this.props.resume.skills.map(
+      (skill, index) => (
+        <li key={index}>
+          <input
+            type='text'
+            value={skill}
+            onChange={event => this.props.skillsChangeHandler(event, index)}
+          />
+        </li>
+      )
+    );
 
-    const portfolio = this.props.resume.portfolio.map(toListItem);
-    const skills = this.props.resume.skills.map(toListItem);
     const experience = this.props.resume.experience.map(
       (job, index) => (
         <JobInput
@@ -27,11 +47,11 @@ class ResumeForm extends Component {
     );
     const education = this.props.resume.education.map(
       (school, index) => <SchoolInput
-          school={school}
-          key={index}
-          index={index}
-          educationChangeHandler={this.props.educationChangeHandler}
-        />
+        school={school}
+        key={index}
+        index={index}
+        educationChangeHandler={this.props.educationChangeHandler}
+      />
     );
 
     return (
