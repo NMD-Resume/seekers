@@ -62,7 +62,7 @@ authController.verifyUser = (req, res, next) => {
        if (err) console.log(err);
        if (user && bcrypt.compareSync(req.body.password, user.password)) {
          sessionController.startSession(user);
-         res.redirect('/user/', req.body.username);
+         res.redirect('/user/' + req.body.username);
        } else {
          res.send('Error');
        }
