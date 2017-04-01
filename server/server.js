@@ -2,8 +2,18 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const authController = require('./auth/user/authController');
+const cookieController = require('./auth/util/cookieController');
+const sessionController = require('./auth/session/sessionController');
 
-// const userController = require('./UserController');
+
+const userController = require('./UserController');
 
 const PORT = 3000;
 
@@ -18,14 +28,48 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/..'));
 
-const userRouter = express.Router();
+app.get('/', cookieController.setCookie, (req, res) => {
+  res.redirect('/resume');
+})
 
-app.post('/', userController.createUser);
+/**
+* signup
+*/
+app.get('/signup', (req, res) => {
+  res.redirect('/signup');
+})
 
+// Create a user in the database
+// localhost://3000/
+app.post('/signup', userController.createUser);
+
+
+/**
+* login
+*/
+app.post('/login', cookieController.setSSIDCookie, userController.verifyUser);
+
+
+/**
+* Authorized routes
+*/
+app.get('/resume', sessionController.isLoggedIn, (req, res) => {
+  userController.getAllUsers((err, users) => {
+    if (err) throw err;
+    res.render('/resume', { users: users });
+  });
+});
+
+// Get a user from the database
+// localhost://3000//"username"
 app.get('/:username', userController.getUser);
 
+// Change a user's name
+// localhost://3000/"username"
 app.patch('/:username', userController.updateUser);
 
+// Delete a user from the database
+// localhost://3000/"username"
 app.delete('/:username', userController.deleteUser);
 
 

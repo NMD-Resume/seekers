@@ -1,0 +1,424 @@
+body {
+  margin: 0;
+}
+
+a img{
+  border: 0px;
+}
+
+::-moz-selection {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+::selection {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.seekhunt-search-box .mdl-textfield__input {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.seekhunt-header .mdl-menu__container {
+  z-index: 50;
+  margin: 0 !important;
+}
+
+
+.mdl-textfield--expandable {
+  width: auto;
+}
+
+.seekhunt-fab {
+  position: absolute;
+  right: 20%;
+  bottom: -26px;
+  z-index: 3;
+  background: #64ffda !important;
+  color: black !important;
+}
+
+.seekhunt-mobile-title {
+  display: none !important;
+}
+
+
+.seekhunt-logo-image {
+  width: 175px;
+}
+
+
+.seekhunt-header {
+  overflow: visible;
+  background-color: white;
+}
+
+  .seekhunt-header .material-icons {
+    color: #767777 !important;
+  }
+
+  .seekhunt-header .mdl-layout__drawer-button {
+    background: transparent;
+    color: #767777;
+  }
+
+  .seekhunt-header .mdl-navigation__link {
+    color: #757575;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .seekhunt-navigation-container {
+    /* Simple hack to make the overflow happen to the left instead... */
+    direction: rtl;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
+    width: 500px;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .seekhunt-navigation {
+    /* ... and now make sure the content is actually LTR */
+    direction: ltr;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    width: 800px;
+  }
+
+  .seekhunt-search-box.is-focused + .seekhunt-navigation-container {
+    opacity: 0;
+    width: 100px;
+  }
+
+
+  .seekhunt-navigation .mdl-navigation__link {
+    display: inline-block;
+    height: 60px;
+    line-height: 68px;
+    background-color: transparent !important;
+    border-bottom: 4px solid transparent;
+  }
+
+    .seekhunt-navigation .mdl-navigation__link:hover {
+      border-bottom: 4px solid #2196f3;
+    }
+
+  .seekhunt-search-box {
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .seekhunt-more-button {
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+
+
+.seekhunt-drawer {
+  border-right: none;
+}
+
+  .seekhunt-drawer-separator {
+    height: 1px;
+    background-color: #dcdcdc;
+    margin: 8px 0;
+  }
+
+  .seekhunt-drawer .mdl-navigation__link.mdl-navigation__link {
+    font-size: 14px;
+    color: #757575;
+  }
+
+  .seekhunt-drawer span.mdl-navigation__link.mdl-navigation__link {
+    color: #2196f3;
+  }
+
+  .seekhunt-drawer .mdl-layout-title {
+    position: relative;
+    background: #2196f3;
+    height: 160px;
+  }
+
+    .seekhunt-drawer .seekhunt-logo-image {
+      position: absolute;
+      bottom: 16px;
+    }
+
+.seekhunt-welcome-section {
+  position: relative;
+  height: 800px;
+  width: auto;
+  background-color: #f3f3f3;
+  background-size: cover;
+}
+
+.logo-font {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+  color: #767777;
+  font-weight: 500;
+}
+
+.seekhunt-slogan {
+  font-size: 60px;
+  padding-top: 160px;
+}
+
+.seekhunt-sub-slogan {
+  font-size: 21px;
+  padding-top: 24px;
+}
+
+.seekhunt-link {
+  text-decoration: none;
+  color: #2196f3 !important;
+}
+
+  .seekhunt-link:hover {
+    color: #2196f3 !important;
+  }
+
+  .seekhunt-link .material-icons {
+    position: relative;
+    top: -1px;
+    vertical-align: middle;
+  }
+
+.seekhunt-alt-link {
+  text-decoration: none;
+  color: #64ffda !important;
+  font-size: 16px;
+}
+
+  .seekhunt-alt-link:hover {
+    color: #00bfa5 !important;
+  }
+
+  .seekhunt-alt-link .material-icons {
+    position: relative;
+    top: 6px;
+  }
+
+.seekhunt-card-container {
+}
+
+  .seekhunt-card-container .mdl-card__media {
+    overflow: hidden;
+    background: transparent;
+  }
+
+    .seekhunt-card-container .mdl-card__media img {
+      width: 100%;
+    }
+
+  .seekhunt-card-container .mdl-card__title {
+    background: transparent;
+    height: auto;
+  }
+
+  .seekhunt-card-container .mdl-card__title-text {
+    color: black;
+    height: auto;
+  }
+
+  .seekhunt-card-container .mdl-card__supporting-text {
+    height: auto;
+    color: black;
+    padding-bottom: 56px;
+  }
+
+  .seekhunt-card-container .mdl-card__actions {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .seekhunt-card-container .mdl-card__actions a {
+    border-top: none;
+    font-size: 16px;
+  }
+
+.seekhunt-footer {
+  background-color: #fafafa;
+  position: relative;
+}
+
+  .seekhunt-footer a:hover {
+    color: #2196f3;
+  }
+
+  .seekhunt-footer .mdl-mega-footer--top-section::after {
+    border-bottom: none;
+  }
+
+  .seekhunt-footer .mdl-mega-footer--middle-section::after {
+    border-bottom: none;
+  }
+
+  .seekhunt-footer .mdl-mega-footer--bottom-section {
+    position: relative;
+  }
+
+  .seekhunt-footer .mdl-mega-footer--bottom-section a {
+    margin-right: 2em;
+  }
+
+  .seekhunt-footer .mdl-mega-footer--right-section a .material-icons {
+    position: relative;
+    top: 6px;
+  }
+
+
+.seekhunt-link-menu:hover {
+  cursor: pointer;
+}
+
+
+/**** Mobile layout ****/
+@media (max-width: 900px) {
+  .seekhunt-navigation-container {
+    display: none;
+  }
+
+  .seekhunt-title {
+    display: none !important;
+  }
+
+  .seekhunt-mobile-title {
+    display: block !important;
+    position: absolute;
+    left: calc(50% - 70px);
+    top: 12px;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* WebViews in iOS 9 break the "~" operator, and WebViews in OS X 10.10 break
+     consecutive "+" operators in some cases. Therefore, we need to use both
+     here to cover all the bases. */
+  .seekhunt.seekhunt-search-box.is-focused ~ .seekhunt-mobile-title,
+  .seekhunt-search-box.is-focused + .seekhunt-navigation-container + .seekhunt-mobile-title {
+    opacity: 0;
+  }
+
+  .seekhunt-more-button {
+    display: none;
+  }
+
+  .seekhunt-search-box.is-focused {
+    width: calc(100% - 48px);
+  }
+
+  .seekhunt-search-box .mdl-textfield__expandable-holder {
+    width: 100%;
+  }
+
+  .seekhunt-welcome-section {
+    height: 350px;
+  }
+
+  .seekhunt-slogan {
+    font-size: 26px;
+    margin: 0 16px;
+    padding-top: 24px;
+  }
+
+  .seekhunt-sub-slogan {
+    font-size: 16px;
+    margin: 0 16px;
+    padding-top: 8px;
+  }
+
+  .seekhunt-footer .mdl-mega-footer--bottom-section {
+    display: none;
+  }
+}
+
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
