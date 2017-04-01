@@ -5,8 +5,9 @@ login.on('click', (e) => {
   let username = $("#username").val();
   let password = $('#password').val();
   if (username && password) {
-    $.post('/login', { username: username, password: password }).then((err) => {
-      if (err) console.log(err);
-      else window.location = '/profile'
+    $.post('/login', { username: username, password: password }).then((response) => {
+      console.log(response);
+      if (response === 'Error') $('.message').html('Incorrect username/password').attr('style', 'color: red');
+      else window.location = '/profile';
   }); 
 }});
