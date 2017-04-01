@@ -29,6 +29,11 @@ var educationSchema = new Schema({
   location: String
 })
 
+var portfolioSchema = new Schema({
+  url: String,
+  folderLink: String,
+})
+
 // Document schema to store user information
 // A "username" that is String username of user
 // A "firstName" that is String firstname of user
@@ -48,8 +53,7 @@ const seekSchema = new Schema ({
   lastName: {type: String, required: true},
   type: {type: String, required: true},
   summary: String,
-  portfolio: [String],
-  images: [String],
+  portfolio: [portfolioSchema],
   skills: [String],
   experience: [experienceSchema],
   education: [educationSchema]
