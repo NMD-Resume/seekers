@@ -84,30 +84,15 @@ app.patch('/:type/:username', userController.updateUser);
 // localhost://3000/"username"
 app.delete('/:username', userController.deleteUser);
 
-// app.get('/styles.css', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../styles.css'));
-// })
-
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../index.html'));
-// })
-
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../index.html'));
-// })
-
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../index.html'));
-// })
-
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../index.html'));
-// })
+//TESTING OUT CUSTOM URL'S
+app.get('/user/:username', (req, res) => {
+    res.sendFile(path.resolve(__dirname + '/../profile.html'));
+});
 
 app.use(express.static(path.join(__dirname, '/../')));
 
 // 404 error
-app.get('*', (req, res) => res.status(404).send('This page does not exist!'));
+app.get('*', (req, res) => res.status(404).sendFile(path.resolve(__dirname + '/../404.html')));
 
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
