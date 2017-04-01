@@ -277,7 +277,7 @@ class ResumeContainer extends Component {
     // const body = queryStr.stringify(this.state.resume);
 
     // function to bind setState to the component during async function
-    const setResume = (resume) => this.setState.call(this, { resume });
+    const boundSetState = this.setState.bind(this);
     const body = JSON.stringify(this.state.resume);
 
     // make a patch request to update the current resume
@@ -294,6 +294,9 @@ class ResumeContainer extends Component {
 
         // indicate data has been saved
         console.log('Data saved');
+        
+        // redirect to public facing resume
+        window.location.replace('/user/' + user);
       } catch (err) {
         // Do something with an error, either with a failed
         // patch request or a database error
