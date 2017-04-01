@@ -37,6 +37,7 @@ var educationSchema = new Schema({
 // A "type" that is a String of type of user, seeker(job) or hunter(employer)
 // A "summary" that is a String of texts summarizing user profile
 // A "portfolio" that is String Array links to user project pages
+// A "images" that is a String Array links to user's project images in file
 // A "skills" that is a String Array of skills user wishes to display
 // An "experience" with subDocument "experienceSchema"
 // An "education" with subDocument "educationSchema"
@@ -48,6 +49,7 @@ const seekSchema = new Schema ({
   type: {type: String, required: true},
   summary: String,
   portfolio: [String],
+  images: [String],
   skills: [String],
   experience: [experienceSchema],
   education: [educationSchema]
