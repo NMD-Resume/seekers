@@ -2,18 +2,15 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const authController = require('./auth/user/authController');
 const cookieController = require('./auth/util/cookieController');
 const sessionController = require('./auth/session/sessionController');
 
 
-const userController = require('./UserController');
+const userController = require('./userController');
 
 const PORT = 3000;
 
@@ -41,15 +38,15 @@ app.get('/signup', (req, res) => {
 
 // Create a user in the database
 // localhost://3000/
-app.post('/signup', userController.createUser);
+app.post('/signup', authController.createUser);
 
 
 /**
 * login
 */
-app.post('/login', cookieController.setSSIDCookie, userController.verifyUser);
+app.post('/login', cookieController.setSSIDCookie, authController.verifyUser);
 
-
+app.post('/', userController.createProfile);
 /**
 * Authorized routes
 */
