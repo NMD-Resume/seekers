@@ -123,11 +123,10 @@ class ResumeContainer extends Component {
     // need to convert json body to a query string (e.g. "name=dude&key=value")
     // using query-string's stringify method
     const body = queryStr.stringify(this.state.resume);
-    console.log(body);
 
     // function to bind setState to the component during async function
     const setResume = (resume) => this.setState.call(this, { resume });
-o
+    
     // make a patch request to update the current resume
     (async function () {
       try {
