@@ -83,7 +83,7 @@ class ResumeForm extends Component {
 
         <h4>Portfolio</h4>
         <ol>{portfolio}</ol>
-        <button type="button" className="btn btn-primary btn-xs" onClick={() => this.props.addNewProject(index)}>Add New Project</button>
+        <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewProject}>Add New Project</button>
         {/*<input
           type='button'
           onClick={this.props.addNewProject}
@@ -92,7 +92,7 @@ class ResumeForm extends Component {
 
         <h4>Skills</h4>
         <ol>{skills}</ol>
-        <button type="button" className="btn btn-primary btn-xs" onClick={() => this.props.addNewSkill(index)}>Add New Skill</button>
+        <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewSkill}>Add New Skill</button>
         {/*<input
           type='button'
           onClick={this.props.addNewSkill}
@@ -101,7 +101,7 @@ class ResumeForm extends Component {
 
         <h4>Experience</h4>
         <ul>{experience}</ul>        
-        <button type="button" className="btn btn-primary btn-xs" onClick={() => this.props.addNewJob(index)}>Add New Job</button>
+        <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewJob}>Add New Job</button>
         {/*<input
           type='button'
           onClick={this.props.addNewJob}
@@ -110,14 +110,14 @@ class ResumeForm extends Component {
 
         <h4>Education</h4>
         <ul>{education}</ul>
-        <button type="button" className="btn btn-primary btn-xs" onClick={() => this.props.addNewSchool(index)}>Add New School</button>
+        <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewSchool}>Add New School</button>
         {/*<input
           type='button'
           onClick={this.props.addNewSchool}
           value='Add New School'
         />*/}
 
-        <button type="button" className="btn btn-success btn-xs" onClick={() => this.props.save(index)}>Save</button>
+        <button type="button" className="btn btn-success btn-xs" onClick={this.props.handleSubmit}>Save</button>
 
       </form>
     );
