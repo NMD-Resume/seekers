@@ -26,7 +26,8 @@ class ResumeForm extends Component {
 
     const toListItem = (item) => <li key={item}>{item}</li>;
 
-    const portfolio = this.resume.portfolio.map(toListItem);
+    // get only portfolio urls for now
+    const portfolio = this.resume.portfolio.map(proj => proj.url).map(toListItem);
     const skills = this.resume.skills.map(toListItem);
     const experience = this.resume.experience.map(
       (job, i) => <Job job={job} key={i}/>
