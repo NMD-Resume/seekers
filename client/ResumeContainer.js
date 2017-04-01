@@ -14,8 +14,8 @@ import fetch from 'isomorphic-fetch';
 let user;
 let editing = false;
 
-if (window.location.pathname.substring(0,8) === '/newuser') {
-    user = window.location.pathname.slice(9);
+if (window.location.pathname.substring(0,9) === '/edituser') {
+    user = window.location.pathname.slice(10);
     editing = true;
 } else {
     user = window.location.pathname.slice(6);

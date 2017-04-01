@@ -86,6 +86,7 @@ app.delete('/:username', userController.deleteUser);
 
 //TESTING OUT CUSTOM URL'S
 app.get('/user/:username', (req, res) => {
+    console.log(req.cookies)
     res.sendFile(path.resolve(__dirname + '/../profile.html'));
 });
 
