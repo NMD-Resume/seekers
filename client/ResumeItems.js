@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Forms, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 /*
   Components for items within each resume section
@@ -37,11 +38,16 @@ export function School(props) {
 // creates a combination of an input and describing text next to it
 function captionedInput(caption, value, propChangeHandler) {
   const input = (
-    <input
+    <FormControl
+      type="text"
+      value={value}
+      onChange={propChangeHandler}
+    />
+   /*<input
         type='text'
         value={value}
         onChange={propChangeHandler}
-      />
+      />*/
   );
   // onChange uses the change handler originating from the resume container
   return (
@@ -75,12 +81,7 @@ export class JobInput extends Component {
     return (
       <div>
         {inputs}
-        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeJob(index)}>Remove Job</button>
-        {/*<input
-          type='button'
-          value='Remove Job'
-          onClick={() => this.props.removeJob(this.props.index)}
-        />*/}
+        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeJob(this.props.index)}>Remove Job</button>
       </div>
     );
   }
@@ -112,13 +113,18 @@ export class SchoolInput extends Component {
     return (
       <div>
         {inputs}
-        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSchool(index)}>Remove School</button>
-        {/*<input
-          type='button'
-          value='Remove School'
-          onClick={() => this.props.removeSchool(this.props.index)}
-        />*/}
+        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSchool(this.props.index)}>Remove School</button>
       </div>
     );
   }
 }
+/*<input
+  type='button'
+  value='Remove Job'
+  onClick={() => this.props.removeJob(this.props.index)}
+/>*/
+/*<input
+  type='button'
+  value='Remove School'
+  onClick={() => this.props.removeSchool(this.props.index)}
+/>*/

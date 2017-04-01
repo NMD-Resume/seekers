@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { JobInput, SchoolInput } from './resumeItems';
 import Button from 'react-bootstrap/lib/Button';
+import { Forms, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class ResumeForm extends Component {
   /*
@@ -13,11 +14,17 @@ class ResumeForm extends Component {
     const portfolio = this.props.resume.portfolio.map(
       (project, index) => (
         <li key={index}>
-          <input
+          <FormControl
+            type="text"
+            value={project.url}
+            placeholder="Enter link"
+            onChange={event => this.props.portfolioChangeHandler(event, index, 'url')}
+          />
+        {/*<input
             type='text'
             value={project.url}
             onChange={event => this.props.portfolioChangeHandler(event, index, 'url')}
-          />
+          />*/}
           <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeProject(index)}>Remove Project</button>
           {/*<input
             type='button'
@@ -31,11 +38,17 @@ class ResumeForm extends Component {
     const skills = this.props.resume.skills.map(
       (skill, index) => (
         <li key={index}>
-          <input
+          <FormControl
+            type="text"
+            value={skill}
+            placeholder="Enter skill"
+            onChange={event => this.props.skillsChangeHandler(event, index)}
+          />
+        {/*}<input
             type='text'
             value={skill}
             onChange={event => this.props.skillsChangeHandler(event, index)}
-          />
+          />*/}
           <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSkill(index)}>Remove Skill</button>
           {/*<input
             type='button'
@@ -72,49 +85,87 @@ class ResumeForm extends Component {
       <form onSubmit={this.props.handleSubmit} className="mdl-card__supporting-text">
 
         <h4>Summary</h4>
-        <textarea
+        <FormControl
+          type="text"
+          placeholder="Type your summary here"
           name='summary'
-          placeholder='Type your summary here'
           value={this.props.resume.summary}
           onChange={this.props.summaryChangeHandler}
         />
 
+        <hr/>
         <h4>Contact Info</h4>
-        <p>Email <input
+        <p>Email
+          <FormControl
+            name='email'
+            type="text"
+            value={
+              this.props.resume.contactInfo && this.props.resume.contactInfo.email
+            }
+            onChange={(event) => this.props.contactChangeHandler(event, 'email')}
+          />
+        {/*<input
           name='email'
           type='text'
-          value={this.props.resume.contactInfo.email}
+          value={
+            this.props.resume.contactInfo && this.props.resume.contactInfo.email
+          }
           onChange={(event) => this.props.contactChangeHandler(event, 'email')}
-        /></p>
-        <p>Phone Number <input
+        />*/}
+          </p>
+        <p>Phone Number
+          <FormControl
+            name='phoneNumber'
+            type="text"
+            value={
+              this.props.resume.contactInfo && this.props.resume.contactInfo.phoneNumber
+            }
+            onChange={(event) => this.props.contactChangeHandler(event, 'phoneNumber')}
+          />
+          {/*<input
           name='phoneNumber'
           type='text'
-          value={this.props.resume.contactInfo.phoneNumber}
+          value={
+            this.props.resume.contactInfo && this.props.resume.contactInfo.phoneNumber
+          }
           onChange={(event) => this.props.contactChangeHandler(event, 'phoneNumber')}
-        /></p>
-        <p>Address <input
+        />*/}
+          </p>
+        <p>Address
+          <FormControl
+            name='address'
+            type="text"
+            value={
+              this.props.resume.contactInfo && this.props.resume.contactInfo.address
+            }
+            onChange={(event) => this.props.contactChangeHandler(event, 'address')}
+          />
+        {/*<input
           name='address'
           type='text'
-          value={this.props.resume.contactInfo.address}
+          value={
+            this.props.resume.contactInfo && this.props.resume.contactInfo.address
+          }
           onChange={(event) => this.props.contactChangeHandler(event, 'address')}
-        /></p>
-
+        />*/}
+          </p>
+        <hr/>
         <h4>Portfolio</h4>
         <ol>{portfolio}</ol>
         <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewProject}>Add New Project</button>
-
+        <hr/>
         <h4>Skills</h4>
         <ol>{skills}</ol>
         <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewSkill}>Add New Skill</button>
-
+        <hr/>
         <h4>Experience</h4>
-        <ul>{experience}</ul>        
+        <ul>{experience}</ul>
         <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewJob}>Add New Job</button>
-
+        <hr/>
         <h4>Education</h4>
         <ul>{education}</ul>
         <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewSchool}>Add New School</button>
-
+        <hr/>
         <button type="button" className="btn btn-success btn-xs" onClick={this.props.handleSubmit}>Save</button>
 
       </form>
@@ -123,3 +174,10 @@ class ResumeForm extends Component {
 }
 
 export default ResumeForm;
+
+// <textarea
+//   name='summary'
+//   placeholder='Type your summary here'
+//   value={this.props.resume.summary}
+//   onChange={this.props.summaryChangeHandler}
+// />
