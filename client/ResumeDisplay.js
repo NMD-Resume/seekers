@@ -36,7 +36,7 @@ class ResumeForm extends Component {
     );
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div>
         
         <h3>Summary</h3>
         <p>{this.resume.summary}</p>
@@ -54,7 +54,7 @@ class ResumeForm extends Component {
         <ul>{education}</ul>
       
         <button>Save</button>
-      </form>
+      </div>
     );
   }
 }

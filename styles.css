@@ -169,7 +169,7 @@ a img{
 
 .seekhunt-slogan {
   font-size: 60px;
-  padding-top: 160px;
+  padding-top: 120px;
 }
 
 .seekhunt-sub-slogan {
@@ -371,7 +371,7 @@ a img{
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: #2196f3;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -387,7 +387,7 @@ a img{
   font-size: 12px;
 }
 .form .register-form {
-  display: none;
+  display: block;
 }
 .container {
   position: relative;
