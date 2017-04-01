@@ -48,14 +48,12 @@ authController.verifyUser = (req, res, next) => {
        if (err) console.log(err); //throw err;
        console.log('verify user', user);
        console.log('req password', req.body.password);
-       console.log('bcrypt', bcrypt.compareSync(req.body.password, user.password));
-       if (user === null || !bcrypt.compareSync(req.body.password, user.password)) {
-         res.send('Incorrect username/password');
-        //  next();
-       } else {
+      //  console.log('bcrypt', bcrypt.compareSync(req.body.password, user.password));
+       if (user && bcrypt.compareSync(req.body.password, user.password)) {
          sessionController.startSession(user);
          res.redirect('/profile');
-        //  next();
+       } else {
+         res.send('Incorrect username/password');
        }
    });
 };
