@@ -45,15 +45,10 @@ authController.createUser = (req, res, next) => {
 */
 authController.verifyUser = (req, res, next) => {
   User.findOne({username: req.body.username}, function(err, user) {
-       if (err) console.log(err); //throw err;
-       console.log('verify user', user);
-       console.log('req password', req.body.password);
-      //  console.log('bcrypt', bcrypt.compareSync(req.body.password, user.password));
+       if (err) console.log(err);
        if (user && bcrypt.compareSync(req.body.password, user.password)) {
-         console.log('in verify')
          sessionController.startSession(user);
          res.redirect('/profile');
-        //  next();
        } else {
          res.send('Error');
        }

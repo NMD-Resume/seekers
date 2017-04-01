@@ -10,10 +10,10 @@
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
+    "isomorphic-fetch": "^2.2.1",
     "mongo": "^0.1.0",
     "mongoose": "^4.9.2",
     "phantomjs": "^2.1.7",
-    "query-string": "^4.3.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "webshot": "^0.18.0"
