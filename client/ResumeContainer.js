@@ -44,11 +44,26 @@ class ResumeContainer extends Component {
     };
   }
 
-  summaryChangeHandler(event, text) {
-    console.log(text);
+  summaryChangeHandler(event) {
     // replaces the summary property in the state.resume object
     const newResume = {};
     Object.assign(newResume, this.state.resume, {summary: event.target.value});
+    this.setState({
+      resume: newResume
+    });
+  }
+
+  experienceChangeHandler(event, index, jobProp) {
+    // copy experience array
+    const newExperience = this.state.resume.experience.slice();
+
+    // then change the property in the experience at the given index
+    newExperience[index][jobProp] = event.target.value;
+
+    // create updated copy of resume object
+    const newResume = {};
+    Object.assign(newResume, this.state.resume, {summary: event.target.value});
+
     this.setState({
       resume: newResume
     });
@@ -66,6 +81,7 @@ class ResumeContainer extends Component {
       <ResumeForm
         resume={this.state.resume}
         summaryChangeHandler={this.summaryChangeHandler.bind(this)}
+        experienceChangeHandler={this.experienceChangeHandler.bind(this)}
         handleSubmit={this.handleSubmit.bind(this)}
       />
       :

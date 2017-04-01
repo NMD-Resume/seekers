@@ -20,28 +20,49 @@ export function Job(props) {
   );
 }
 
-function captionedInput(caption, value) {
-  return <p>{caption}<input type='text' value={value}/></p>;
+function captionedInput(caption, value, propChangeHandler) {
+  // using the change handler originating from the resume container
+  return (
+    <p key={caption}>{caption}
+      <input
+        type='text'
+        value={value}
+        onChange={propChangeHandler}
+      />
+    </p>
+  );
 }
 
-export function JobInput(props) {
-  /*
-    creates inputs for diff resume elems
-  */
-  const job = props.job;
-  const inputs = [
-    captionedInput('Title', job.title),
-    captionedInput('Company', job.company),
-    captionedInput('Start', job.start),
-    captionedInput('End', job.end),
-    captionedInput('Location', job.location),
-    captionedInput('Details', job.content),
-  ];
-  return (
-    <div>
-      {inputs}
-    </div>
-  );
+export class JobInput extends Component {
+
+  createJobChangeHandler(jobProp) {
+    // creates specific event handlers for a specific field in a job
+    return (event) => this.props.experienceChangeHandler(event, this.props.index, jobProp);
+  }
+
+  render() {
+    /*
+      creates inputs for diff resume elems
+    */
+    const job = this.props.job;
+    // creates parameter list to create a captioned input with a handler
+    // bound to the ResumeContainer
+    const inputs = [
+      ['Title', job.title, this.createJobChangeHandler('title')],
+      ['Company', job.company, this.createJobChangeHandler('company')],
+      ['Start', job.start, this.createJobChangeHandler('start')],
+      ['End', job.end, this.createJobChangeHandler('end')],
+      ['Location', job.location, this.createJobChangeHandler('location')],
+      ['Content', job.content, this.createJobChangeHandler('content')],
+    ]
+      .map(params => captionedInput(...params));
+
+    return (
+      <div>
+        {inputs}
+      </div>
+    );
+  }
 }
 
 export function School(props) {
@@ -56,4 +77,31 @@ export function School(props) {
       <p>{school.location}</p>
     </div>
   )
+}
+
+export class SchoolInput extends Component {
+
+  createSchoolChangeHandler(jobProp) {
+    // creates specific event handlers for a specific field in a job
+    return (event) => this.props.educationChangeHandler(event, this.props.index, jobProp);
+  }
+
+  render() {
+    /*
+      creates inputs for diff resume elems
+    */
+    const job = this.props.job;
+    // creates parameter list to create a captioned input with a handler
+    // bound to the ResumeContainer
+    const inputs = [
+      ['School', job.title, this.createChangeHandler('school')],
+    ]
+      .map(params => captionedInput(...params));
+
+    return (
+      <div>
+        {inputs}
+      </div>
+    );
+  }
 }

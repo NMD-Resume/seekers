@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Job, School } from './resumeItems';
+import { JobInput, School } from './resumeItems';
 
 class ResumeForm extends Component {
   /*
@@ -10,7 +10,7 @@ class ResumeForm extends Component {
     super(props);
   }
 
-  
+
 
   render() {
     const toListItem = (item, i) => <li key={item}>{item}</li>;
@@ -18,15 +18,22 @@ class ResumeForm extends Component {
     const portfolio = this.props.resume.portfolio.map(toListItem);
     const skills = this.props.resume.skills.map(toListItem);
     const experience = this.props.resume.experience.map(
-      (job, i) => <Job job={job} key={i}/>
+      (job, index) => (
+        <JobInput
+          job={job}
+          key={index}
+          index={index}
+          experienceChangeHandler={this.props.experienceChangeHandler}
+        />
+      )
     );
     const education = this.props.resume.education.map(
-      (school, i) => <School school={school} key={i}/>
+      (school, i) => <School school={school} key={i} />
     );
 
     return (
       <form onSubmit={this.props.handleSubmit}>
-        
+
         <h3>Summary</h3>
         <input
           type='text'
@@ -38,7 +45,7 @@ class ResumeForm extends Component {
 
         <h3>Portfolio</h3>
         <ul>{portfolio}</ul>
-        
+
         <h3>Skills</h3>
         <ul>{skills}</ul>
 
@@ -47,7 +54,7 @@ class ResumeForm extends Component {
 
         <h3>Education</h3>
         <ul>{education}</ul>
-      
+
         <button>Save</button>
       </form>
     );
