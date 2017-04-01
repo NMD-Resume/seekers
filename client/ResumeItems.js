@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 /*
-  Module that contains helper functions to create lists within resume page
+  Components for items within each resume section
 */
 
 export function Job(props) {
@@ -20,16 +20,32 @@ export function Job(props) {
   );
 }
 
-function captionedInput(caption, value, propChangeHandler) {
-  // using the change handler originating from the resume container
+export function School(props) {
+  /*
+    creates div for school/education info
+  */
+  const school = props.school;
   return (
-    <p key={caption}>{caption}
-      <input
+    <div>
+      <h4>{school.school} - {school.major}, {school.degree}</h4>
+      <p>{school.start} - {school.end}</p>
+      <p>{school.location}</p>
+    </div>
+  )
+}
+
+// creates a combination of an input and describing text next to it
+function captionedInput(caption, value, propChangeHandler) {
+  const input = (
+    <input
         type='text'
         value={value}
         onChange={propChangeHandler}
       />
-    </p>
+  );
+  // onChange uses the change handler originating from the resume container
+  return (
+    <p key={caption}>{caption} {input}</p>
   );
 }
 
@@ -62,20 +78,6 @@ export class JobInput extends Component {
       </div>
     );
   }
-}
-
-export function School(props) {
-  /*
-    creates div for school/education info
-  */
-  const school = props.school;
-  return (
-    <div>
-      <h4>{school.school} - {school.major}, {school.degree}</h4>
-      <p>{school.start} - {school.end}</p>
-      <p>{school.location}</p>
-    </div>
-  )
 }
 
 export class SchoolInput extends Component {

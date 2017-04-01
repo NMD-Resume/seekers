@@ -3,7 +3,7 @@ const Hunt = require('./HuntModel');
 const mongoose = require('mongoose');
 
 const UserController = {
-  createProfile(req, res) {
+  createResume(req, res) {
     const User = Seek;
     if (req.body.type.toLowerCase() === 'seek') {
       User = Seek;

@@ -10,7 +10,7 @@ const cookieController = require('./auth/util/cookieController');
 const sessionController = require('./auth/session/sessionController');
 
 
-const userController = require('./userController');
+const userController = require('./UserController');
 
 const PORT = 3000;
 
@@ -46,7 +46,7 @@ app.post('/signup', authController.createUser);
 */
 app.post('/login', cookieController.setSSIDCookie, authController.verifyUser);
 
-app.post('/', userController.createProfile);
+app.post('/', userController.createResume);
 /**
 * Authorized routes
 */
