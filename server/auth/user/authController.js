@@ -26,6 +26,7 @@ authController.createUser = (req, res, next) => {
     if (err) {
       res.redirect('/signup');
     } else {
+      console.log('USER BEING CREATED')
       cookieController.setSSIDCookie(req, res, next);
       sessionController.startSession(user);
     }
