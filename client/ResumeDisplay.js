@@ -1,3 +1,7 @@
+/*
+  Public-facing read-only resume
+*/
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Job, School } from './resumeItems';
@@ -8,33 +12,34 @@ class ResumeForm extends Component {
   */
   constructor(props) {
     super(props);
+    this.resume = props.resume;
   }
 
-  
+  handleSubmit(e) {
+    e.preventDefault();
+
+    // TODO: post data to server 
+    console.log('submitted');
+  }
 
   render() {
-    const toListItem = (item, i) => <li key={item}>{item}</li>;
 
-    const portfolio = this.props.resume.portfolio.map(toListItem);
-    const skills = this.props.resume.skills.map(toListItem);
-    const experience = this.props.resume.experience.map(
+    const toListItem = (item) => <li key={item}>{item}</li>;
+
+    const portfolio = this.resume.portfolio.map(toListItem);
+    const skills = this.resume.skills.map(toListItem);
+    const experience = this.resume.experience.map(
       (job, i) => <Job job={job} key={i}/>
     );
-    const education = this.props.resume.education.map(
+    const education = this.resume.education.map(
       (school, i) => <School school={school} key={i}/>
     );
 
     return (
-      <form onSubmit={this.props.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         
         <h3>Summary</h3>
-        <input
-          type='text'
-          name='summary'
-          placeholder='Type your summary here'
-          value={this.props.resume.summary}
-          onChange={this.props.summaryChangeHandler}
-        />
+        <p>{this.resume.summary}</p>
 
         <h3>Portfolio</h3>
         <ul>{portfolio}</ul>
