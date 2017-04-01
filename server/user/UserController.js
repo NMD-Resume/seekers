@@ -3,22 +3,6 @@ const Hunt = require('./HuntModel');
 const mongoose = require('mongoose');
 
 const UserController = {
-  createResume(req, res) {
-    const User = Seek;
-    if (req.body.type.toLowerCase() === 'seek') {
-      User = Seek;
-    } else if (req.body.type.toLowerCase() === 'hunt') {
-      User = Hunt;
-    }
-    User.create(req.body, (err, user) => {
-      if (err) {
-        res.status(418).json(err);
-      } else {
-        res.status(200).json(user);
-      }
-      return;
-    })
-  },
 
   // Get a student from the database and send it in the response
   // Their first name will be in the request parameter 'name'
@@ -48,21 +32,46 @@ const UserController = {
   // Get a student from the database and update the student
   // The student's first name will be in the request parameter 'name'
   // The student's new first name will be in the request body
-  updateUser(req, res) {
-    const User = Seek;
-    if (req.body.type.toLowerCase() === 'seek') {
+  // will move on to create user if can't find
+  updateUser(req, res, next) {
+    let User;
+    if (req.params.type.toLowerCase() === 'seek') {
       User = Seek;
-    } else if (req.body.type.toLowerCase() === 'hunt') {
+    } else if (req.params.type.toLowerCase() === 'hunt') {
       User = Hunt;
+    } else {
+      return next();
     }
-    User.findOneAndUpdate({ username: req.params.username }, req.body, (err, user) => {
+
+    User.findOneAndUpdate({ username: req.body.username }, req.body, (err, user) => {
       if (err) throw err;
       if (user === null) {
-        res.status(418).send(err);
+        return next();
       } else {
-        res.status(200).send(user);
+        res.json(user);
       }
     });
+  },
+
+  // create a resume if can't find one to update
+  createResume(req, res, next) {
+    let User;
+    if (req.params.type.toLowerCase() === 'seek') {
+      User = Seek;
+    } else if (req.params.type.toLowerCase() === 'hunt') {
+      User = Hunt;
+    } else {
+      return next();
+    }
+
+    User.create(req.body, (err, user) => {
+      if (err) {
+        res.status(418).json(err);
+      } else {
+        res.status(200).json(user);
+      }
+      return;
+    })
   },
 
   // Delete a student from the database

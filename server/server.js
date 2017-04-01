@@ -65,6 +65,10 @@ app.get('/resume', sessionController.isLoggedIn, (req, res) => {
 // localhost://3000//"username"
 app.get('/:type/:username', userController.getUser);
 
+// Create or update user
+app.post('/:type', userController.updateUser);
+app.post('/:type', userController.createResume);
+
 // Change a user's name
 // localhost://3000/"username"
 app.patch('/:username', userController.updateUser);

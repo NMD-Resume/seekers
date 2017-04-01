@@ -48,12 +48,12 @@ class ResumeContainer extends Component {
   summaryChangeHandler(event) {
     // replaces the summary property in the state.resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {summary: event.target.value});
+    Object.assign(newResume, this.state.resume, { summary: event.target.value });
     this.setState({
       resume: newResume
     });
   }
-  
+
   portfolioChangeHandler(event, index) {
     // copy portfolio array
     const newLinks = this.state.resume.portfolio.slice();
@@ -63,7 +63,7 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {portfolio: newLinks});
+    Object.assign(newResume, this.state.resume, { portfolio: newLinks });
 
     this.setState({
       resume: newResume
@@ -79,7 +79,7 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {skills: newSkills});
+    Object.assign(newResume, this.state.resume, { skills: newSkills });
 
     this.setState({
       resume: newResume
@@ -95,7 +95,7 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {experience: newExperience});
+    Object.assign(newResume, this.state.resume, { experience: newExperience });
 
     this.setState({
       resume: newResume
@@ -111,13 +111,13 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {education: newEducation});
+    Object.assign(newResume, this.state.resume, { education: newEducation });
 
     this.setState({
       resume: newResume
     });
   }
-  
+
   handleSubmit(e) {
     e.preventDefault();
 
