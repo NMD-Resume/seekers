@@ -20,14 +20,17 @@ authController.getAllUsers = (next) => {
 * @param res - http.ServerResponse
 */
 authController.createUser = (req, res, next) => {
+  // console.log('this is req.body.username', req.body.username);
+  // console.log('this is req.body.password', req.body.password);
   var user = new User({username: req.body.username, password: req.body.password});
   user.save((err) => {
-    // console.log(err);
+    // console.log('user err', err);
+    // console.log('user', user);
     if (err) {
       res.redirect('/signup');
     } else {
       cookieController.setSSIDCookie(req, res, next);
-      sessionController.startSession(user);
+      // sessionController.startSession(user);
     }
   });
 };
@@ -42,15 +45,16 @@ authController.createUser = (req, res, next) => {
 */
 authController.verifyUser = (req, res, next) => {
   User.findOne({username: req.body.username}, function(err, user) {
-       if (err) throw err;
-      //  console.log(user);
-      //  console.log(bcrypt.compareSync(req.body.password, user.password));
+       if (err) console.log(err); //throw err;
+       console.log('verify user', user);
+       console.log('req password', req.body.password);
+       console.log('bcrypt', bcrypt.compareSync(req.body.password, user.password));
        if (user === null || !bcrypt.compareSync(req.body.password, user.password)) {
          res.redirect('/signup');
         //  next();
        } else {
          sessionController.startSession(user);
-         res.redirect('/resume');
+         res.redirect('/profile');
         //  next();
        }
    });

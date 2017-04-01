@@ -24,6 +24,12 @@ const UserController = {
   // Their first name will be in the request parameter 'name'
   // This should send the found student
   getUser(req, res) {
+    const User = Seek;
+    if (req.body.type.toLowerCase() === 'seek') {
+      User = Seek;
+    } else if (req.body.type.toLowerCase() === 'hunt') {
+      User = Hunt;
+    }
     User.findOne({username: req.params.username}, (err, user) => {
       if (err) throw err;
       if (user === null) {
@@ -38,6 +44,12 @@ const UserController = {
   // The student's first name will be in the request parameter 'name'
   // The student's new first name will be in the request body
   updateUser(req, res) {
+    const User = Seek;
+    if (req.body.type.toLowerCase() === 'seek') {
+      User = Seek;
+    } else if (req.body.type.toLowerCase() === 'hunt') {
+      User = Hunt;
+    }
     User.findOneAndUpdate({username: req.params.username}, req.body, (err, user) => {
       if (err) throw err;
       if (user === null) {
@@ -52,6 +64,12 @@ const UserController = {
   // The student's first name will be sent in the request parameter 'name'
   // This should send a success status code
   deleteUser(req, res) {
+    const User = Seek;
+    if (req.body.type.toLowerCase() === 'seek') {
+      User = Seek;
+    } else if (req.body.type.toLowerCase() === 'hunt') {
+      User = Hunt;
+    }
     User.deleteOne({ username: req.params.username }, (err, user) => {
       if (err) {
         res.status(418).send(err);

@@ -29,6 +29,7 @@ sessionController.startSession = (result) => {
   //write code here
   var session = new Session({cookieId: result._id});
   session.save();
+  // next();
   // callback('/secret');
 };
 
