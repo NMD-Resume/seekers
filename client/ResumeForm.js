@@ -11,14 +11,15 @@ class ResumeForm extends Component {
   }
 
   render() {
+
     // creating list of input groups for each resume section
     const portfolio = this.props.resume.portfolio.map(
-      (link, index) => (
+      (project, index) => (
         <li key={index}>
           <input
             type='text'
-            value={link}
-            onChange={event => this.props.portfolioChangeHandler(event, index)}
+            value={project.url}
+            onChange={event => this.props.portfolioChangeHandler(event, index, 'url')}
           />
         </li>
       )
@@ -60,8 +61,7 @@ class ResumeForm extends Component {
       <form onSubmit={this.props.handleSubmit}>
 
         <h3>Summary</h3>
-        <input
-          type='text'
+        <textarea
           name='summary'
           placeholder='Type your summary here'
           value={this.props.resume.summary}

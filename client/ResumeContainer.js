@@ -6,19 +6,30 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ResumeForm from './ResumeForm';
 import ResumeDisplay from './ResumeDisplay';
+import fetch from 'node-fetch';
+
+// temp url, getting data for 'derek'
+const getResumeUrl = 'http://localhost:3000/seek/derek';
 
 class ResumeContainer extends Component {
   constructor() {
     super();
     this.state = {
       editing: true,
-      resume: sampleResume,
     };
   }
 
   componentWillMount() {
     // before component mounts, start a GET request for resume data
-    
+
+    // function to bind setState to the component during async function
+    const setResume = (resume) => this.setState.call(this, { resume });
+
+    (async function () {
+      const res = await fetch(getResumeUrl);
+      const resumeData = await res.json();
+      setResume(resumeData);
+    })();
   }
 
   // onChange handlers passed down to inputs
@@ -31,12 +42,12 @@ class ResumeContainer extends Component {
     });
   }
   
-  portfolioChangeHandler(event, index) {
+  portfolioChangeHandler(event, index, projectProp) {
     // copy portfolio array
     const newLinks = this.state.resume.portfolio.slice();
 
     // then change the property in the experience at the given index
-    newLinks[index] = event.target.value;
+    newLinks[index][projectProp] = event.target.value;
 
     // create updated copy of resume object
     const newResume = {};
@@ -103,7 +114,7 @@ class ResumeContainer extends Component {
   }
 
   render() {
-    return (this.state.editing) ?
+    const resumePage = (this.state.editing) ?
       <ResumeForm
         resume={this.state.resume}
         summaryChangeHandler={this.summaryChangeHandler.bind(this)}
@@ -114,7 +125,19 @@ class ResumeContainer extends Component {
         handleSubmit={this.handleSubmit.bind(this)}
       />
       :
-      <ResumeDisplay resume={this.state.resume} />
+      <ResumeDisplay resume={this.state.resume} />;
+    
+    return (
+      <div>
+      {
+        (this.state.resume)
+        ?
+        resumePage
+        :
+        <p>Loading resume...</p>
+      }
+      </div>
+    )
   }
 }
 
