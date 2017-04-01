@@ -57,4 +57,4 @@ authController.verifyUser = (req, res, next) => {
    });
 };
 
-module.exports = AuthController;
+module.exports = authController;

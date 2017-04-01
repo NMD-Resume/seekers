@@ -39,15 +39,48 @@ class ResumeContainer extends Component {
   constructor() {
     super();
     this.state = {
-      loggedIn: true,
+      editing: true,
       resume: sampleResume,
     };
   }
 
+  // onChange handlers passed down to inputs
   summaryChangeHandler(event) {
     // replaces the summary property in the state.resume object
     const newResume = {};
     Object.assign(newResume, this.state.resume, {summary: event.target.value});
+    this.setState({
+      resume: newResume
+    });
+  }
+  
+  portfolioChangeHandler(event, index) {
+    // copy portfolio array
+    const newLinks = this.state.resume.portfolio.slice();
+
+    // then change the property in the experience at the given index
+    newLinks[index] = event.target.value;
+
+    // create updated copy of resume object
+    const newResume = {};
+    Object.assign(newResume, this.state.resume, {portfolio: newLinks});
+
+    this.setState({
+      resume: newResume
+    });
+  }
+
+  skillsChangeHandler(event) {
+    // copy experience array
+    const newSkills = this.state.resume.skills.slice();
+
+    // then change the property in the experience at the given index
+    newSkills[index] = event.target.value;
+
+    // create updated copy of resume object
+    const newResume = {};
+    Object.assign(newResume, this.state.resume, {skills: newSkills});
+
     this.setState({
       resume: newResume
     });
@@ -68,7 +101,7 @@ class ResumeContainer extends Component {
       resume: newResume
     });
   }
-  
+
   educationChangeHandler(event, index, jobProp) {
     // copy education array
     const newEducation = this.state.resume.education.slice();
@@ -93,12 +126,14 @@ class ResumeContainer extends Component {
   }
 
   render() {
-    return (this.state.loggedIn) ?
+    return (this.state.editing) ?
       <ResumeForm
         resume={this.state.resume}
         summaryChangeHandler={this.summaryChangeHandler.bind(this)}
         experienceChangeHandler={this.experienceChangeHandler.bind(this)}
         educationChangeHandler={this.educationChangeHandler.bind(this)}
+        skillsChangeHandler={this.skillsChangeHandler.bind(this)}
+        portfolioChangeHandler={this.portfolioChangeHandler.bind(this)}
         handleSubmit={this.handleSubmit.bind(this)}
       />
       :

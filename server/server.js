@@ -47,7 +47,7 @@ app.post('/signup', authController.createUser, (req, res) => {
 */
 app.post('/login', cookieController.setSSIDCookie, authController.verifyUser);
 
-
+app.post('/', userController.createResume);
 /**
 * Authorized routes
 */
