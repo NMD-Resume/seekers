@@ -71,6 +71,22 @@ class ResumeContainer extends Component {
     });
   }
 
+  contactChangeHandler(event, contactProp) {
+    // copy contact object
+    const newContacts = Object.assign({}, this.state.resume.contactInfo);
+
+    // then change the property in the experience at the given index
+    newContacts[contactProp] = event.target.value;
+
+    // create updated copy of resume object
+    const newResume = {};
+    Object.assign(newResume, this.state.resume, { contactInfo: newContacts });
+
+    this.setState({
+      resume: newResume
+    });
+  }
+
   portfolioChangeHandler(event, index, projectProp) {
     // copy portfolio array
     const newLinks = this.state.resume.portfolio.slice();
@@ -261,7 +277,7 @@ class ResumeContainer extends Component {
     // const body = queryStr.stringify(this.state.resume);
 
     // function to bind setState to the component during async function
-    const setResume = (resume) => this.setState.call(this, { resume });
+    const boundSetState = this.setState.bind(this);
     const body = JSON.stringify(this.state.resume);
 
     // make a patch request to update the current resume
@@ -278,6 +294,9 @@ class ResumeContainer extends Component {
 
         // indicate data has been saved
         console.log('Data saved');
+        
+        // redirect to public facing resume
+        window.location.replace('/user/' + user);
       } catch (err) {
         // Do something with an error, either with a failed
         // patch request or a database error
@@ -297,6 +316,7 @@ class ResumeContainer extends Component {
         resume={this.state.resume}
 
         summaryChangeHandler={this.summaryChangeHandler.bind(this)}
+        contactChangeHandler={this.contactChangeHandler.bind(this)}
         experienceChangeHandler={this.experienceChangeHandler.bind(this)}
         educationChangeHandler={this.educationChangeHandler.bind(this)}
         skillsChangeHandler={this.skillsChangeHandler.bind(this)}

@@ -96,7 +96,11 @@ app.get('/newuser/:username', (req, res) => {
 app.use(express.static(path.join(__dirname, '/../')));
 
 // 404 error
-app.get('*', (req, res) => res.status(404).sendFile(path.resolve(__dirname + '/../404.html')));
+app.get('/404', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/../404.html'));
+})
+app.get('*', (req, res) => res.status(404).redirect('/404'));
+
 
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
