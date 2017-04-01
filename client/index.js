@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ResumeForm from './ResumeForm';
+import ResumeContainer from './ResumeContainer';
 
 ReactDOM.render(
-  <ResumeForm />,
+  <ResumeContainer />,
   document.getElementById('root')
 );
