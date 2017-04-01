@@ -50,7 +50,10 @@ authController.verifyUser = (req, res, next) => {
        console.log('req password', req.body.password);
       //  console.log('bcrypt', bcrypt.compareSync(req.body.password, user.password));
        if (user && bcrypt.compareSync(req.body.password, user.password)) {
+         console.log('in verify')
          sessionController.startSession(user);
+         res.redirect('/profile');
+        //  next();
        } else {
          res.send('Error');
        }

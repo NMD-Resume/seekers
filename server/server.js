@@ -33,15 +33,15 @@ app.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '../signup.html'));
 })
 
+app.get('/profile', (req, res) => {
+  res.sendFile(path.join(__dirname, '../profile.html'));
+})
+
 // Create a user in the database
 // localhost://3000/
 app.post('/signup', authController.createUser, (req, res) => {
-  console.log('this shit should render');
   res.sendFile(path.join(__dirname, '../profile.html'));
 });
-// app.post('/signup', (req, res) => {
-//   console.log('signup');
-// })
 
 /**
 * login
