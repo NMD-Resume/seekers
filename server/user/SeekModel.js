@@ -34,6 +34,12 @@ var portfolioSchema = new Schema({
   folderLink: String,
 })
 
+var contactSchema = new Schema({
+  email: String,
+  phoneNumber: String,
+  address: String
+})
+
 // Document schema to store user information
 // A "username" that is String username of user
 // A "firstName" that is String firstname of user
@@ -52,6 +58,7 @@ const seekSchema = new Schema ({
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
   type: {type: String, required: true},
+  contactInfo: contactSchema,
   summary: String,
   portfolio: [portfolioSchema],
   skills: [String],
