@@ -36,6 +36,10 @@ authController.createUser = (req, res, next) => {
         firstName: 'New',
         lastName: 'User',
         type: 'seek',
+        portfolio: [{}],
+        skills: [''],
+        experience: [{}],
+        education: [{}]
       });
 
       blankResume.save((err) => {

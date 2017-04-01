@@ -36,11 +36,35 @@ class ResumeForm extends Component {
       (school, i) => <School school={school} key={i}/>
     );
 
+    // shows contact info if any
+    let contactInfo;
+    const contactInfoKeys = this.resume.contactInfo && Object.keys(this.resume.contactInfo);
+    if (contactInfoKeys && contactInfoKeys.length) {
+      contactInfo = (
+        <div>
+          <h4>Contact Info</h4>
+          <ul>
+            {this.resume.contactInfo.email &&
+              <li>Email: {this.resume.contactInfo.email}</li>
+            }
+            {this.resume.contactInfo.phoneNumber &&
+              <li>Phone Number: {this.resume.contactInfo.phoneNumber}</li>
+            }
+            {this.resume.contactInfo.address &&
+              <li>Address: {this.resume.contactInfo.address}</li>
+            }
+          </ul>
+        </div>
+      );
+    }
+
     return (
       <div className="mdl-card__supporting-text">
         
         <h4>Summary</h4>
         <p>{this.resume.summary}</p>
+
+        {contactInfo}
 
         <h4>Portfolio</h4>
         <ul>{portfolio}</ul>

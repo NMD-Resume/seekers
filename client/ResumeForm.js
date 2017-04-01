@@ -79,6 +79,8 @@ class ResumeForm extends Component {
           onChange={this.props.summaryChangeHandler}
         />
 
+        <h4>Contact Info</h4>
+
         <h4>Portfolio</h4>
         <ol>{portfolio}</ol>
         <button type="button" className="btn btn-primary btn-xs" onClick={() => this.props.addNewProject(index)}>Add New Project</button>
