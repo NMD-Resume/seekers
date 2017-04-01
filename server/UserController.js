@@ -1,8 +1,15 @@
-const User = require('./UserModel');
+const Seek = require('./SeekModel');
+const Hunt = require('./HuntModel');
 const mongoose = require('mongoose');
 
 const UserController = {
   createUser(req, res) {
+    const User;
+    if (req.body.type.toLowerCase() === 'seek') {
+      User = Seek;
+    } else if (req.body.type.toLowerCase() === 'hunt') {
+      User = Hunt;
+    }
     User.create(req.body, (err, user) => {
       if (err) {
         res.status(418).json(err);
