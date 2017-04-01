@@ -44,6 +44,7 @@ class ResumeContainer extends Component {
     };
   }
 
+  // onChange handlers passed down to inputs
   summaryChangeHandler(event) {
     // replaces the summary property in the state.resume object
     const newResume = {};
