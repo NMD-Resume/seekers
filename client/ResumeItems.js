@@ -75,7 +75,7 @@ export class JobInput extends Component {
     return (
       <div>
         {inputs}
-        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeJob(index)}>Remove Job</button>
+        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeJob(this.props.index)}>Remove Job</button>
         {/*<input
           type='button'
           value='Remove Job'
@@ -112,7 +112,7 @@ export class SchoolInput extends Component {
     return (
       <div>
         {inputs}
-        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSchool(index)}>Remove School</button>
+        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSchool(this.props.index)}>Remove School</button>
         {/*<input
           type='button'
           value='Remove School'
