@@ -17,6 +17,11 @@ class ResumeForm extends Component {
             value={project.url}
             onChange={event => this.props.portfolioChangeHandler(event, index, 'url')}
           />
+          <input
+            type='button'
+            onClick={() => this.props.removeProject(index)}
+            value='Remove Project'
+          />
         </li>
       )
     );
@@ -29,6 +34,11 @@ class ResumeForm extends Component {
             value={skill}
             onChange={event => this.props.skillsChangeHandler(event, index)}
           />
+          <input
+            type='button'
+            onClick={() => this.props.removeSkill(index)}
+            value='Remove Skill'
+          />
         </li>
       )
     );
@@ -40,6 +50,7 @@ class ResumeForm extends Component {
           key={index}
           index={index}
           experienceChangeHandler={this.props.experienceChangeHandler}
+          removeJob={this.props.removeJob}
         />
       )
     );
@@ -50,6 +61,7 @@ class ResumeForm extends Component {
         key={index}
         index={index}
         educationChangeHandler={this.props.educationChangeHandler}
+        removeSchool={this.props.removeSchool}
       />
     );
 

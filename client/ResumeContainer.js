@@ -122,7 +122,7 @@ class ResumeContainer extends Component {
   }
 
   /**
-   * TODO: New resume item button handlers
+   * New resume item button handlers
    * Will add fresh dummy entries into each resume section
    */
   createAddNewFunc(item, targetArr) {
@@ -177,6 +177,63 @@ class ResumeContainer extends Component {
   }
 
   /**
+   * Item removal handlers
+   * Will remove items in given array
+   */
+  createRemoveFunc(targetIdx, targetArr) {
+    /**
+     * Creates a function to remove from an array in this.state.resume object
+     * targetIdx - index of item to remove in targetArr
+     * targetArr - key of the array to change within this.state.resume
+     */
+    return () => {
+      // throw err if targetArr not in this.state.resume
+      if (!this.state.resume[targetArr])
+        throw new Error('Invalid resume key. Choose a key mapped to an array.');
+
+      // create new arr without item at targetIdx
+      const newArr = this.state.resume[targetArr]
+        .filter((_, idx) => idx !== targetIdx);
+
+      // new resume w/ updated arr
+      const newResume = Object.assign({}, this.state.resume,
+        { [targetArr]: newArr }
+      );
+
+      // then change state
+      this.setState({ resume: newResume });
+    }
+  }
+
+  removeProject(targetIdx) {
+    // run function returned by createRemoveFunc
+    (
+      this.createRemoveFunc(targetIdx, 'portfolio')
+    )();
+  }
+  
+  removeSkill(targetIdx) {
+    // run function returned by createRemoveFunc
+    (
+      this.createRemoveFunc(targetIdx, 'skills')
+    )();
+  }
+
+  removeJob(targetIdx) {
+    // run function returned by createRemoveFunc
+    (
+      this.createRemoveFunc(targetIdx, 'experience')
+    )();
+  }
+
+  removeSchool(targetIdx) {
+    // run function returned by createRemoveFunc
+    (
+      this.createRemoveFunc(targetIdx, 'education')
+    )();
+  }
+
+  /**
    * Submits data to database
    * @param {Event} e - event object 
    */
@@ -204,9 +261,15 @@ class ResumeContainer extends Component {
           body,
         });
         const result = await res.json();
-        console.log(result);
+
+        // indicate data has been saved
+        console.log('Data saved');
       } catch (err) {
-        console.log(err);
+        // Do something with an error, either with a failed
+        // patch request or a database error
+        
+        // indicate error in saving data
+        console.log('Error saving data')
       }
     })();
   }
@@ -227,6 +290,11 @@ class ResumeContainer extends Component {
         addNewSkill={this.addNewSkill.bind(this)}
         addNewJob={this.addNewJob.bind(this)}
         addNewSchool={this.addNewSchool.bind(this)}
+
+        removeProject={this.removeProject.bind(this)}
+        removeSkill={this.removeSkill.bind(this)}
+        removeJob={this.removeJob.bind(this)}
+        removeSchool={this.removeSchool.bind(this)}
 
         handleSubmit={this.handleSubmit.bind(this)}
       />
