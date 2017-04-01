@@ -75,6 +75,11 @@ export class JobInput extends Component {
     return (
       <div>
         {inputs}
+        <input
+          type='button'
+          value='Remove Job'
+          onClick={() => this.props.removeJob(this.props.index)}
+        />
       </div>
     );
   }
@@ -106,6 +111,11 @@ export class SchoolInput extends Component {
     return (
       <div>
         {inputs}
+        <input
+          type='button'
+          value='Remove School'
+          onClick={() => this.props.removeSchool(this.props.index)}
+        />
       </div>
     );
   }
