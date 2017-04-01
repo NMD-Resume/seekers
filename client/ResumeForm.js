@@ -80,42 +80,40 @@ class ResumeForm extends Component {
         />
 
         <h4>Contact Info</h4>
+        <p>Email <input
+          name='email'
+          type='text'
+          value={this.props.resume.contactInfo.email}
+          onChange={(event) => this.props.contactChangeHandler(event, 'email')}
+        /></p>
+        <p>Phone Number <input
+          name='phoneNumber'
+          type='text'
+          value={this.props.resume.contactInfo.phoneNumber}
+          onChange={(event) => this.props.contactChangeHandler(event, 'phoneNumber')}
+        /></p>
+        <p>Address <input
+          name='address'
+          type='text'
+          value={this.props.resume.contactInfo.address}
+          onChange={(event) => this.props.contactChangeHandler(event, 'address')}
+        /></p>
 
         <h4>Portfolio</h4>
         <ol>{portfolio}</ol>
         <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewProject}>Add New Project</button>
-        {/*<input
-          type='button'
-          onClick={this.props.addNewProject}
-          value='Add New Project'
-        />*/}
 
         <h4>Skills</h4>
         <ol>{skills}</ol>
         <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewSkill}>Add New Skill</button>
-        {/*<input
-          type='button'
-          onClick={this.props.addNewSkill}
-          value='Add New Skill'
-        />*/}
 
         <h4>Experience</h4>
         <ul>{experience}</ul>        
         <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewJob}>Add New Job</button>
-        {/*<input
-          type='button'
-          onClick={this.props.addNewJob}
-          value='Add New Job'
-        />*/}
 
         <h4>Education</h4>
         <ul>{education}</ul>
         <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewSchool}>Add New School</button>
-        {/*<input
-          type='button'
-          onClick={this.props.addNewSchool}
-          value='Add New School'
-        />*/}
 
         <button type="button" className="btn btn-success btn-xs" onClick={this.props.handleSubmit}>Save</button>
 
