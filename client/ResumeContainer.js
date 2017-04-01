@@ -7,34 +7,6 @@ import ReactDOM from 'react-dom';
 import ResumeForm from './ResumeForm';
 import ResumeDisplay from './ResumeDisplay';
 
-const sampleResume = {
-  lastName: 'Ever',
-  firstName: 'Greatest',
-  summary: 'Summary',
-  portfolio: ['https://google.com', 'https://linkedin.com'],
-  skills: ['React', 'Mongo', 'Baking'],
-  experience: [
-    {
-      start: 'Beginning of time',
-      end: 'End of time',
-      company: 'Big Pimpin',
-      title: 'Big Playa forreal',
-      content: 'Yeah i was pretty poppin',
-      location: 'Errwhere, USA',
-    }
-  ],
-  education: [
-    {
-      start: 'now',
-      end: 'the future',
-      school: 'Codesmith Academy for People Who Code Good',
-      major: 'Swaggeneering',
-      degree: 'PhD',
-      location: 'Playa Vista, USA',
-    }
-  ],
-};
-
 class ResumeContainer extends Component {
   constructor() {
     super();
@@ -44,16 +16,21 @@ class ResumeContainer extends Component {
     };
   }
 
+  componentWillMount() {
+    // before component mounts, start a GET request for resume data
+    
+  }
+
   // onChange handlers passed down to inputs
   summaryChangeHandler(event) {
     // replaces the summary property in the state.resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, { summary: event.target.value });
+    Object.assign(newResume, this.state.resume, {summary: event.target.value});
     this.setState({
       resume: newResume
     });
   }
-
+  
   portfolioChangeHandler(event, index) {
     // copy portfolio array
     const newLinks = this.state.resume.portfolio.slice();
@@ -63,7 +40,7 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, { portfolio: newLinks });
+    Object.assign(newResume, this.state.resume, {portfolio: newLinks});
 
     this.setState({
       resume: newResume
@@ -79,7 +56,7 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, { skills: newSkills });
+    Object.assign(newResume, this.state.resume, {skills: newSkills});
 
     this.setState({
       resume: newResume
@@ -95,7 +72,7 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, { experience: newExperience });
+    Object.assign(newResume, this.state.resume, {experience: newExperience});
 
     this.setState({
       resume: newResume
@@ -111,13 +88,13 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, { education: newEducation });
+    Object.assign(newResume, this.state.resume, {education: newEducation});
 
     this.setState({
       resume: newResume
     });
   }
-
+  
   handleSubmit(e) {
     e.preventDefault();
 

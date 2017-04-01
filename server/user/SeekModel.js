@@ -48,7 +48,7 @@ var portfolioSchema = new Schema({
 // An "education" with subDocument "educationSchema"
 // TODO: add employer schema requirements (stage 3)
 const seekSchema = new Schema ({
-  username: {type: String, required: true},
+  username: {type: String, required: true, unique: true},
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
   type: {type: String, required: true},

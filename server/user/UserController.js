@@ -35,18 +35,20 @@ const UserController = {
   // will move on to create user if can't find
   updateUser(req, res, next) {
     let User;
-    if (req.params.type.toLowerCase() === 'seek') {
+
+    // if no type specified
+    if (!req.body.type) return next();
+
+    if (req.body.type.toLowerCase() === 'seek') {
       User = Seek;
     } else if (req.params.type.toLowerCase() === 'hunt') {
       User = Hunt;
-    } else {
-      return next();
     }
 
-    User.findOneAndUpdate({ username: req.body.username }, req.body, (err, user) => {
+    User.findOneAndUpdate({ username: req.params.username }, req.body, (err, user) => {
       if (err) throw err;
       if (user === null) {
-        return next();
+        res.status(418).json(err);
       } else {
         res.json(user);
       }
@@ -56,6 +58,10 @@ const UserController = {
   // create a resume if can't find one to update
   createResume(req, res, next) {
     let User;
+
+    // if no type specified
+    if (!req.params.type) return next();
+
     if (req.params.type.toLowerCase() === 'seek') {
       User = Seek;
     } else if (req.params.type.toLowerCase() === 'hunt') {
