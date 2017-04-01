@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const userController = require('./UserController');
+// const userController = require('./UserController');
 
 const PORT = 3000;
 
@@ -16,23 +16,26 @@ mongoose.connection.once('open', () => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname + '/..'));
+
 const userRouter = express.Router();
+
 
 // Create a user in the database
 // localhost://3000/
-userRouter.post('/', userController.createUser);
+app.post('/', userController.createUser);
 
 // Get a user from the database
 // localhost://3000//"username"
-userRouter.get('/:username', userController.getUser);
+app.get('/:username', userController.getUser);
 
 // Change a user's name
 // localhost://3000/"username"
-userRouter.patch('/:username', userController.updateUser);
+app.patch('/:username', userController.updateUser);
 
 // Delete a user from the database
 // localhost://3000/"username"
-userRouter.delete('/:username', userController.deleteUser);
+app.delete('/:username', userController.deleteUser);
 
 
 

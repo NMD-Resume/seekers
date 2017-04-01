@@ -1,6 +1,34 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// SubDocument for experienceSchema
+// A "start" to store String start time of experience
+// An "end" to store String end time of experience
+// A "content" to store String content of experience
+// A "location" to store String location of experience
+var experienceSchema = new Schema({
+  start: String,
+  end: String,
+  company: String,
+  title: String,
+  content: String,
+  location: String
+})
+
+// SubDocument for experienceSchema
+// A "start" to store String start time of experience
+// An "end" to store String end time of experience
+// A "content" to store String content of experience
+// A "location" to store String location of experience
+var educationSchema = new Schema({
+  start: String,
+  end: String,
+  school: String,
+  major: String,
+  degree: String,
+  location: String
+})
+
 // Document schema to store user information
 // A "username" that is String username of user
 // A "firstName" that is String firstname of user
@@ -26,28 +54,6 @@ const userSchema = new Schema ({
   education: [educationSchema]
 })
 
-// SubDocument for experienceSchema
-// A "start" to store String start time of experience
-// An "end" to store String end time of experience
-// A "content" to store String content of experience
-// A "location" to store String location of experience
-var experienceSchema = new Schema({
-  start: String,
-  end: String,
-  content: String,
-  location: String
-})
 
-// SubDocument for experienceSchema
-// A "start" to store String start time of experience
-// An "end" to store String end time of experience
-// A "content" to store String content of experience
-// A "location" to store String location of experience
-var educationSchema = new Schema({
-  start: String,
-  end: String,
-  content: String,
-  location: String
-})
 
-module.exports = mongoose.model('UserSchema', userSchema);
+module.exports = mongoose.model('User', userSchema);
