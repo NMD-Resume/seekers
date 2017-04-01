@@ -71,6 +71,22 @@ class ResumeContainer extends Component {
     });
   }
 
+  contactChangeHandler(event, contactProp) {
+    // copy contact object
+    const newContacts = Object.assign({}, this.state.resume.contactInfo);
+
+    // then change the property in the experience at the given index
+    newContacts[contactProp] = event.target.value;
+
+    // create updated copy of resume object
+    const newResume = {};
+    Object.assign(newResume, this.state.resume, { contactInfo: newContacts });
+
+    this.setState({
+      resume: newResume
+    });
+  }
+
   portfolioChangeHandler(event, index, projectProp) {
     // copy portfolio array
     const newLinks = this.state.resume.portfolio.slice();
@@ -297,6 +313,7 @@ class ResumeContainer extends Component {
         resume={this.state.resume}
 
         summaryChangeHandler={this.summaryChangeHandler.bind(this)}
+        contactChangeHandler={this.contactChangeHandler.bind(this)}
         experienceChangeHandler={this.experienceChangeHandler.bind(this)}
         educationChangeHandler={this.educationChangeHandler.bind(this)}
         skillsChangeHandler={this.skillsChangeHandler.bind(this)}
