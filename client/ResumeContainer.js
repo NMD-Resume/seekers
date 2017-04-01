@@ -271,6 +271,8 @@ class ResumeContainer extends Component {
   }
 
   render() {
+    // becomes a form if a logged in user wants to edit their resume
+    // if not editing, will display a public-facing resume
     // passes input change and new item handlers
     const resumePage = (this.state.editing) ?
       <ResumeForm

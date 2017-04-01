@@ -49,8 +49,8 @@ var portfolioSchema = new Schema({
 // TODO: add employer schema requirements (stage 3)
 const seekSchema = new Schema ({
   username: {type: String, required: true, unique: true},
-  firstName: {type: String, required: true},
-  lastName: {type: String, required: true},
+  firstName: String,
+  lastName: String,
   type: {type: String, required: true},
   summary: String,
   portfolio: [portfolioSchema],
