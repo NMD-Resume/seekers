@@ -22,24 +22,33 @@ mongoose.connection.once('open', () => {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
-
-app.get('/', cookieController.setCookie, (req, res) => {
-  res.redirect('/resume');
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
 })
 
 /**
 * signup
 */
 app.get('/signup', (req, res) => {
-  res.redirect('/signup');
+  res.sendFile(path.join(__dirname, '../signup.html'));
 })
 
 // Create a user in the database
 // localhost://3000/
 app.post('/signup', authController.createUser, (req, res) => {
-  res.sendFile('./profile.html');
+  console.log('this shit should render');
+  res.sendFile(path.join(__dirname, '../profile.html'));
 });
+// app.post('/signup', (req, res) => {
+//   console.log('signup');
+// })
+
+app.get('/profile', (req, res) => {
+  console.log('get profile');
+  res.sendFile('/Users/Michael/Desktop/We-Got-This/profile.html');
+})
 
 
 /**
@@ -47,7 +56,7 @@ app.post('/signup', authController.createUser, (req, res) => {
 */
 app.post('/login', cookieController.setSSIDCookie, authController.verifyUser);
 
-app.post('/', userController.createResume);
+// app.post('/', userController.createResume);
 /**
 * Authorized routes
 */
@@ -60,7 +69,7 @@ app.get('/resume', sessionController.isLoggedIn, (req, res) => {
 
 // Get a user from the database
 // localhost://3000//"username"
-app.get('/:username', userController.getUser);
+// app.get('/:username', userController.getUser);
 
 // Change a user's name
 // localhost://3000/"username"
@@ -70,7 +79,27 @@ app.patch('/:username', userController.updateUser);
 // localhost://3000/"username"
 app.delete('/:username', userController.deleteUser);
 
-app.use(express.static(__dirname + '/..'));
+// app.get('/styles.css', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../styles.css'));
+// })
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../index.html'));
+// })
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../index.html'));
+// })
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../index.html'));
+// })
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../index.html'));
+// })
+
+app.use(express.static(path.join(__dirname, '/../')));
 
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));

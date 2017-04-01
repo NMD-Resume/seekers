@@ -25,11 +25,11 @@ sessionController.isLoggedIn = (req, res, next) => {
 *
 *
 */
-sessionController.startSession = (result, next) => {
+sessionController.startSession = (result) => {
   //write code here
   var session = new Session({cookieId: result._id});
   session.save();
-  next();
+  // next();
   // callback('/secret');
 };
 

@@ -5,6 +5,7 @@ login.on('click', (e) => {
   let username = $("#username").val();
   let password = $('#password').val();
   if (username && password) {
-    $.post('/login', { username: username });
-  } 
-});
+    $.post('/login', { username: username, password: password }).then(() => {
+      window.location = '/profile'
+  }); 
+}});

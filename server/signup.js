@@ -6,6 +6,6 @@ signup.on('click', (e) => {
   let password = $('#password').val();
   let confirm = $('#confirm').val();
   if (username && password) {
-    $.post('/signup', { username: username, password: password });
+    $.post('/signup', { username: username, password: password }).then(() => window.location = '/profile.html');
   } 
 });
