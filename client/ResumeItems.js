@@ -12,7 +12,7 @@ export function Job(props) {
   const job = props.job;
   return (
     <div>
-      <h4>{job.company}, {job.title}</h4>
+      <h5>{job.company}, {job.title}</h5>
       <p>{job.start} - {job.end}</p>
       <p>{job.location}</p>
       <p>{job.content}</p>
@@ -27,7 +27,7 @@ export function School(props) {
   const school = props.school;
   return (
     <div>
-      <h4>{school.school} - {school.major}, {school.degree}</h4>
+      <h5>{school.school} - {school.major}, {school.degree}</h5>
       <p>{school.start} - {school.end}</p>
       <p>{school.location}</p>
     </div>
@@ -75,11 +75,12 @@ export class JobInput extends Component {
     return (
       <div>
         {inputs}
-        <input
+        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeJob(index)}>Remove Job</button>
+        {/*<input
           type='button'
           value='Remove Job'
           onClick={() => this.props.removeJob(this.props.index)}
-        />
+        />*/}
       </div>
     );
   }
@@ -111,11 +112,12 @@ export class SchoolInput extends Component {
     return (
       <div>
         {inputs}
-        <input
+        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSchool(index)}>Remove School</button>
+        {/*<input
           type='button'
           value='Remove School'
           onClick={() => this.props.removeSchool(this.props.index)}
-        />
+        />*/}
       </div>
     );
   }

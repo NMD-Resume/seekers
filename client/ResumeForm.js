@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { JobInput, SchoolInput } from './resumeItems';
+import Button from 'react-bootstrap/lib/Button';
 
 class ResumeForm extends Component {
   /*
@@ -17,11 +18,12 @@ class ResumeForm extends Component {
             value={project.url}
             onChange={event => this.props.portfolioChangeHandler(event, index, 'url')}
           />
-          <input
+          <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeProject(index)}>Remove Project</button>
+          {/*<input
             type='button'
             onClick={() => this.props.removeProject(index)}
             value='Remove Project'
-          />
+          />*/}
         </li>
       )
     );
@@ -34,11 +36,12 @@ class ResumeForm extends Component {
             value={skill}
             onChange={event => this.props.skillsChangeHandler(event, index)}
           />
-          <input
+          <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSkill(index)}>Remove Skill</button>
+          {/*<input
             type='button'
             onClick={() => this.props.removeSkill(index)}
             value='Remove Skill'
-          />
+          />*/}
         </li>
       )
     );
@@ -66,9 +69,9 @@ class ResumeForm extends Component {
     );
 
     return (
-      <form onSubmit={this.props.handleSubmit}>
+      <form onSubmit={this.props.handleSubmit} className="mdl-card__supporting-text">
 
-        <h3>Summary</h3>
+        <h4>Summary</h4>
         <textarea
           name='summary'
           placeholder='Type your summary here'
@@ -76,39 +79,44 @@ class ResumeForm extends Component {
           onChange={this.props.summaryChangeHandler}
         />
 
-        <h3>Portfolio</h3>
+        <h4>Portfolio</h4>
         <ol>{portfolio}</ol>
-        <input
+        <button type="button" className="btn btn-primary btn-xs" onClick={() => this.props.addNewProject(index)}>Add New Project</button>
+        {/*<input
           type='button'
           onClick={this.props.addNewProject}
           value='Add New Project'
-        />
+        />*/}
 
-        <h3>Skills</h3>
+        <h4>Skills</h4>
         <ol>{skills}</ol>
-        <input
+        <button type="button" className="btn btn-primary btn-xs" onClick={() => this.props.addNewSkill(index)}>Add New Skill</button>
+        {/*<input
           type='button'
           onClick={this.props.addNewSkill}
           value='Add New Skill'
-        />
+        />*/}
 
-        <h3>Experience</h3>
-        <ul>{experience}</ul>
-        <input
+        <h4>Experience</h4>
+        <ul>{experience}</ul>        
+        <button type="button" className="btn btn-primary btn-xs" onClick={() => this.props.addNewJob(index)}>Add New Job</button>
+        {/*<input
           type='button'
           onClick={this.props.addNewJob}
           value='Add New Job'
-        />
+        />*/}
 
-        <h3>Education</h3>
+        <h4>Education</h4>
         <ul>{education}</ul>
-        <input
+        <button type="button" className="btn btn-primary btn-xs" onClick={() => this.props.addNewSchool(index)}>Add New School</button>
+        {/*<input
           type='button'
           onClick={this.props.addNewSchool}
           value='Add New School'
-        />
+        />*/}
 
-        <button>Save</button>
+        <button type="button" className="btn btn-success btn-xs" onClick={() => this.props.save(index)}>Save</button>
+
       </form>
     );
   }

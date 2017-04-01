@@ -89,6 +89,10 @@ app.get('/user/:username', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/../profile.html'));
 });
 
+app.get('/newuser', (req, res) => {
+    res.sendFile(path.resolve(__dirname + '/../profile.html'));
+});
+
 app.use(express.static(path.join(__dirname, '/../')));
 
 // 404 error

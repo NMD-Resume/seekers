@@ -15,6 +15,7 @@
     "mongoose": "^4.9.2",
     "phantomjs": "^2.1.7",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
     "webshot": "^0.18.0"
   },

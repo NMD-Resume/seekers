@@ -5,7 +5,11 @@ signup.on('click', (e) => {
   let username = $("#username").val();
   let password = $('#password').val();
   let confirm = $('#confirm').val();
-  if (username && password) {
-    $.post('/signup', { username: username, password: password }).then(() => window.location = '/profile.html');
-  } 
+  if (password !== confirm) {
+    $('.message').html('Passwords do not match').attr('style', 'color: red');
+  } else {
+      if (username && password) {
+        $.post('/signup', { username: username, password: password }).then(() => window.location = '/newuser');
+      } 
+  }
 });

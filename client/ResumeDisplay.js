@@ -37,24 +37,24 @@ class ResumeForm extends Component {
     );
 
     return (
-      <div>
+      <div className="mdl-card__supporting-text">
         
-        <h3>Summary</h3>
+        <h4>Summary</h4>
         <p>{this.resume.summary}</p>
 
-        <h3>Portfolio</h3>
+        <h4>Portfolio</h4>
         <ul>{portfolio}</ul>
         
-        <h3>Skills</h3>
+        <h4>Skills</h4>
         <ul>{skills}</ul>
 
-        <h3>Experience</h3>
+        <h4>Experience</h4>
         <ul>{experience}</ul>
 
-        <h3>Education</h3>
+        <h4>Education</h4>
         <ul>{education}</ul>
       
-        <button>Save</button>
+
       </div>
     );
   }

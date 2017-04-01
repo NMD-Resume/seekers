@@ -16,13 +16,20 @@ class ResumeContainer extends Component {
   constructor() {
     super();
     this.state = {
-      editing: true,
+      editing: false,
     };
     
   }
 
   componentWillMount() {
     // before component mounts, start a GET request for resume data
+    if (window.location.pathname === '/newuser') {
+      console.log(window.location.pathname)
+      this.setState({
+        editing: true,
+      })
+    } else {
+      
     let user = window.location.pathname.slice(6);
     const getResumeUrl = 'http://localhost:3000/seek/' + user;
     const patchResumeUrl = 'http://localhost:3000/seek/' + user;
@@ -43,6 +50,7 @@ class ResumeContainer extends Component {
 
       setResume(resumeData);
     })();
+    }
   }
 
   /**
