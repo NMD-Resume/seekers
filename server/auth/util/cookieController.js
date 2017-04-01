@@ -1,4 +1,4 @@
-const User = require('./../user/userModel');
+const User = require('./../user/authModel');
 const sessionController = require('./../session/sessionController');
 
 const cookieController = {};

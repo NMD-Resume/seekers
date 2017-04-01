@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const UserController = {
   createUser(req, res) {
-    const User;
+    let User;
     if (req.body.type.toLowerCase() === 'seek') {
       User = Seek;
     } else if (req.body.type.toLowerCase() === 'hunt') {

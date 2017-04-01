@@ -2,16 +2,12 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const authController = require('./auth/user/authController');
 const cookieController = require('./auth/util/cookieController');
 const sessionController = require('./auth/session/sessionController');
-
 
 const userController = require('./UserController');
 
