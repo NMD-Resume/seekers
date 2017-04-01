@@ -85,12 +85,14 @@ class ResumeForm extends Component {
       <form onSubmit={this.props.handleSubmit} className="mdl-card__supporting-text">
 
         <h4>Summary</h4>
-        <textarea
+        <FormControl
+          type="text"
+          placeholder="Type your summary here"
           name='summary'
-          placeholder='Type your summary here'
           value={this.props.resume.summary}
           onChange={this.props.summaryChangeHandler}
         />
+
 
         <h4>Contact Info</h4>
         <p>Email <input
@@ -136,3 +138,10 @@ class ResumeForm extends Component {
 }
 
 export default ResumeForm;
+
+// <textarea
+//   name='summary'
+//   placeholder='Type your summary here'
+//   value={this.props.resume.summary}
+//   onChange={this.props.summaryChangeHandler}
+// />

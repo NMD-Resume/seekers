@@ -81,7 +81,7 @@ export class JobInput extends Component {
     return (
       <div>
         {inputs}
-        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeJob(index)}>Remove Job</button>
+        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeJob(this.props.index)}>Remove Job</button>
       </div>
     );
   }
@@ -113,7 +113,7 @@ export class SchoolInput extends Component {
     return (
       <div>
         {inputs}
-        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSchool(index)}>x</button>
+        <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSchool(this.props.index)}>x</button>
       </div>
     );
   }
