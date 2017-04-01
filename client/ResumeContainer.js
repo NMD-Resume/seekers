@@ -11,6 +11,18 @@ import fetch from 'isomorphic-fetch';
 // temp urls for moving data b/w API
 // const getResumeUrl = 'http://localhost:3000/seek/derek';
 // const patchResumeUrl = 'http://localhost:3000/seek/derek';
+let user;
+let editing = false;
+
+if (window.location.pathname.substring(0,8) === '/newuser') {
+    user = window.location.pathname.slice(9);
+    editing = true;
+} else {
+    user = window.location.pathname.slice(6);
+}
+
+const getResumeUrl = 'http://localhost:3000/seek/' + user;
+const patchResumeUrl = 'http://localhost:3000/seek/' + user;
 
 class ResumeContainer extends Component {
   constructor() {
@@ -23,16 +35,11 @@ class ResumeContainer extends Component {
 
   componentWillMount() {
     // before component mounts, start a GET request for resume data
-    if (window.location.pathname === '/newuser') {
-      console.log(window.location.pathname)
+    if (editing) {
       this.setState({
         editing: true,
       })
-    } else {
-      
-    let user = window.location.pathname.slice(6);
-    const getResumeUrl = 'http://localhost:3000/seek/' + user;
-    const patchResumeUrl = 'http://localhost:3000/seek/' + user;
+    }
 
 
     // function to bind setState to the component during async function
@@ -50,7 +57,6 @@ class ResumeContainer extends Component {
 
       setResume(resumeData);
     })();
-    }
   }
 
   /**

@@ -9,7 +9,7 @@ signup.on('click', (e) => {
     $('.message').html('Passwords do not match').attr('style', 'color: red');
   } else {
       if (username && password) {
-        $.post('/signup', { username: username, password: password }).then(() => window.location = '/user/' + username);
+        $.post('/signup', { username: username, password: password }).then(() => window.location = '/newuser/' + username);
       } 
   }
 });

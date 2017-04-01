@@ -89,7 +89,7 @@ app.get('/user/:username', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/../profile.html'));
 });
 
-app.get('/newuser', (req, res) => {
+app.get('/newuser/:username', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/../profile.html'));
 });
 
