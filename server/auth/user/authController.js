@@ -1,4 +1,5 @@
 const User = require('./authModel');
+const Seek = require('../../user/SeekModel');
 const cookieController = require('./../util/cookieController');
 const sessionController = require('./../session/sessionController');
 const bcrypt = require('bcryptjs');
@@ -15,6 +16,7 @@ authController.getAllUsers = (next) => {
 
 /**
 * createUser - create a new User model and then save the user to the database.
+* Will also add a blank resume for that user
 *
 * @param req - http.IncomingRequest
 * @param res - http.ServerResponse
@@ -22,15 +24,27 @@ authController.getAllUsers = (next) => {
 authController.createUser = (req, res, next) => {
   // console.log('this is req.body.username', req.body.username);
   // console.log('this is req.body.password', req.body.password);
-  var user = new User({username: req.body.username, password: req.body.password});
+  var user = new User({ username: req.body.username, password: req.body.password });
+
   user.save((err) => {
-    // console.log('user err', err);
-    // console.log('user', user);
     if (err) {
       res.redirect('/signup');
     } else {
-      cookieController.setSSIDCookie(req, res, next);
-      // sessionController.startSession(user);
+      // create blank resume
+      const blankResume = new Seek({
+        username: req.body.username,
+        firstName: 'New',
+        lastName: 'User',
+        type: 'seek',
+      });
+
+      blankResume.save((err) => {
+        if (err) {
+          res.redirect('/signup');
+        } else {
+          cookieController.setSSIDCookie(req, res, next);
+        }
+      })
     }
   });
 };
