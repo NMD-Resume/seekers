@@ -9,8 +9,8 @@ import ResumeDisplay from './ResumeDisplay';
 import fetch from 'isomorphic-fetch';
 
 // temp urls for moving data b/w API
-const getResumeUrl = 'http://localhost:3000/seek/derek';
-const patchResumeUrl = 'http://localhost:3000/seek/derek';
+// const getResumeUrl = 'http://localhost:3000/seek/derek';
+// const patchResumeUrl = 'http://localhost:3000/seek/derek';
 
 class ResumeContainer extends Component {
   constructor() {
@@ -23,6 +23,10 @@ class ResumeContainer extends Component {
 
   componentWillMount() {
     // before component mounts, start a GET request for resume data
+    let user = window.location.pathname.slice(6);
+    const getResumeUrl = 'http://localhost:3000/seek/' + user;
+    const patchResumeUrl = 'http://localhost:3000/seek/' + user;
+
 
     // function to bind setState to the component during async function
     const setResume = (resume) => this.setState.call(this, { resume });
