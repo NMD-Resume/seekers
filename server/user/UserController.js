@@ -57,6 +57,7 @@ const UserController = {
     });
   },
 
+
   // create a resume if can't find one to update
   createResume(req, res, next) {
     let User;

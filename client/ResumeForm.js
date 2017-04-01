@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { JobInput, SchoolInput } from './resumeItems';
 import Button from 'react-bootstrap/lib/Button';
+import { Forms, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class ResumeForm extends Component {
   /*
@@ -13,11 +14,17 @@ class ResumeForm extends Component {
     const portfolio = this.props.resume.portfolio.map(
       (project, index) => (
         <li key={index}>
-          <input
+          <FormControl
+            type="text"
+            value={project.url}
+            placeholder="Enter link"
+            onChange={event => this.props.portfolioChangeHandler(event, index, 'url')}
+          />
+        {/*<input
             type='text'
             value={project.url}
             onChange={event => this.props.portfolioChangeHandler(event, index, 'url')}
-          />
+          />*/}
           <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeProject(index)}>Remove Project</button>
           {/*<input
             type='button'
@@ -31,11 +38,17 @@ class ResumeForm extends Component {
     const skills = this.props.resume.skills.map(
       (skill, index) => (
         <li key={index}>
-          <input
+          <FormControl
+            type="text"
+            value={skill}
+            placeholder="Enter skill"
+            onChange={event => this.props.skillsChangeHandler(event, index)}
+          />
+        {/*}<input
             type='text'
             value={skill}
             onChange={event => this.props.skillsChangeHandler(event, index)}
-          />
+          />*/}
           <button type="button" className="btn btn-danger btn-xs" onClick={() => this.props.removeSkill(index)}>Remove Skill</button>
           {/*<input
             type='button'
@@ -100,7 +113,7 @@ class ResumeForm extends Component {
         />*/}
 
         <h4>Experience</h4>
-        <ul>{experience}</ul>        
+        <ul>{experience}</ul>
         <button type="button" className="btn btn-primary btn-xs" onClick={this.props.addNewJob}>Add New Job</button>
         {/*<input
           type='button'
