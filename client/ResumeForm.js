@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { JobInput, School } from './resumeItems';
+import { JobInput, SchoolInput } from './resumeItems';
 
 class ResumeForm extends Component {
   /*
@@ -9,8 +9,6 @@ class ResumeForm extends Component {
   constructor(props) {
     super(props);
   }
-
-
 
   render() {
     const toListItem = (item, i) => <li key={item}>{item}</li>;
@@ -28,7 +26,12 @@ class ResumeForm extends Component {
       )
     );
     const education = this.props.resume.education.map(
-      (school, i) => <School school={school} key={i} />
+      (school, index) => <SchoolInput
+          school={school}
+          key={index}
+          index={index}
+          educationChangeHandler={this.props.educationChangeHandler}
+        />
     );
 
     return (

@@ -44,16 +44,15 @@ export class JobInput extends Component {
     /*
       creates inputs for diff resume elems
     */
-    const job = this.props.job;
     // creates parameter list to create a captioned input with a handler
     // bound to the ResumeContainer
     const inputs = [
-      ['Title', job.title, this.createJobChangeHandler('title')],
-      ['Company', job.company, this.createJobChangeHandler('company')],
-      ['Start', job.start, this.createJobChangeHandler('start')],
-      ['End', job.end, this.createJobChangeHandler('end')],
-      ['Location', job.location, this.createJobChangeHandler('location')],
-      ['Content', job.content, this.createJobChangeHandler('content')],
+      ['Title', this.props.job.title, this.createJobChangeHandler('title')],
+      ['Company', this.props.job.company, this.createJobChangeHandler('company')],
+      ['Start', this.props.job.start, this.createJobChangeHandler('start')],
+      ['End', this.props.job.end, this.createJobChangeHandler('end')],
+      ['Location', this.props.job.location, this.createJobChangeHandler('location')],
+      ['Content', this.props.job.content, this.createJobChangeHandler('content')],
     ]
       .map(params => captionedInput(...params));
 
@@ -90,11 +89,15 @@ export class SchoolInput extends Component {
     /*
       creates inputs for diff resume elems
     */
-    const job = this.props.job;
     // creates parameter list to create a captioned input with a handler
     // bound to the ResumeContainer
     const inputs = [
-      ['School', job.title, this.createChangeHandler('school')],
+      ['School', this.props.school.school, this.createSchoolChangeHandler('school')],
+      ['Major', this.props.school.major, this.createSchoolChangeHandler('major')],
+      ['Degree', this.props.school.degree, this.createSchoolChangeHandler('degree')],
+      ['Start', this.props.school.start, this.createSchoolChangeHandler('start')],
+      ['End', this.props.school.end, this.createSchoolChangeHandler('end')],
+      ['Location', this.props.school.location, this.createSchoolChangeHandler('location')],
     ]
       .map(params => captionedInput(...params));
 

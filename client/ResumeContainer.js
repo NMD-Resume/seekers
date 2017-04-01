@@ -8,8 +8,8 @@ import ResumeForm from './ResumeForm';
 import ResumeDisplay from './ResumeDisplay';
 
 const sampleResume = {
-  username: 'name',
-  password: 'pwd',
+  lastName: 'Ever',
+  firstName: 'Greatest',
   summary: 'Summary',
   portfolio: ['https://google.com', 'https://linkedin.com'],
   skills: ['React', 'Mongo', 'Baking'],
@@ -62,7 +62,23 @@ class ResumeContainer extends Component {
 
     // create updated copy of resume object
     const newResume = {};
-    Object.assign(newResume, this.state.resume, {summary: event.target.value});
+    Object.assign(newResume, this.state.resume, {experience: newExperience});
+
+    this.setState({
+      resume: newResume
+    });
+  }
+  
+  educationChangeHandler(event, index, jobProp) {
+    // copy education array
+    const newEducation = this.state.resume.education.slice();
+
+    // then change the property in the education at the given index
+    newEducation[index][jobProp] = event.target.value;
+
+    // create updated copy of resume object
+    const newResume = {};
+    Object.assign(newResume, this.state.resume, {education: newEducation});
 
     this.setState({
       resume: newResume
@@ -73,7 +89,7 @@ class ResumeContainer extends Component {
     e.preventDefault();
 
     // TODO: post data to server 
-    console.log('submitted');
+    console.log(this.state.resume);
   }
 
   render() {
@@ -82,6 +98,7 @@ class ResumeContainer extends Component {
         resume={this.state.resume}
         summaryChangeHandler={this.summaryChangeHandler.bind(this)}
         experienceChangeHandler={this.experienceChangeHandler.bind(this)}
+        educationChangeHandler={this.educationChangeHandler.bind(this)}
         handleSubmit={this.handleSubmit.bind(this)}
       />
       :
