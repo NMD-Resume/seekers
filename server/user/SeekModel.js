@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// SubDocument for experienceSchema
-// A "start" to store String start time of experience
-// An "end" to store String end time of experience
-// A "content" to store String content of experience
-// A "location" to store String location of experience
+/**
+* SubDocument for experienceSchema
+* A "start" to store String start time of experience
+* An "end" to store String end time of experience
+* A "company" to store String company name of experience
+* A "title" to store String title name of experience
+* A "content" to store String description of experience
+* A "location" to store String location of experience
+**/
 var experienceSchema = new Schema({
   start: String,
   end: String,
@@ -15,11 +19,15 @@ var experienceSchema = new Schema({
   location: String
 })
 
-// SubDocument for experienceSchema
-// A "start" to store String start time of experience
-// An "end" to store String end time of experience
-// A "content" to store String content of experience
-// A "location" to store String location of experience
+/**
+* SubDocument for educationSchema
+* A "start" to store String start time of education
+* An "end" to store String end time of education
+* A "school" to store String school name of education
+* A "major" to store String title major of education
+* A "content" to store String description of education
+* A "location" to store String location of education
+**/
 var educationSchema = new Schema({
   start: String,
   end: String,

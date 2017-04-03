@@ -6,15 +6,6 @@ const bcrypt = require('bcryptjs');
 const authController = {};
 
 /**
-* getAllUsers
-*
-* @param next - Callback Function w signature (err, users)
-*/
-authController.getAllUsers = (next) => {
-  User.find({}, next);
-};
-
-/**
 * createUser - create a new User model and then save the user to the database.
 * Will also add a blank resume for that user
 *
@@ -22,8 +13,6 @@ authController.getAllUsers = (next) => {
 * @param res - http.ServerResponse
 */
 authController.createUser = (req, res, next) => {
-  // console.log('this is req.body.username', req.body.username);
-  // console.log('this is req.body.password', req.body.password);
   var user = new User({ username: req.body.username, password: req.body.password });
 
   user.save((err) => {
