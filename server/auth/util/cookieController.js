@@ -25,19 +25,12 @@ cookieController.setSSIDCookie = setSSIDCookie;
 * @param next - Callback with signature ([err])
 */
 function setSSIDCookie(req, res, next) {
-  // console.log('cookie req', req.body.username);
   User.findOne({username: req.body.username}, (err, result) => {
     if (result) {
-      // console.log('result', result);
       res.cookie('ssid', result._id, {httpOnly: true});
-      // console.log('cookie header', req.cookies);
-      // console.log(req.cookies);
       // sessionController.startSession(req, res, result, next);
     }
-    // console.log('we got next');
     next();
-    // res.redirect('/secret')
-    // sessionController.isLoggedIn(result, callback);
   });
 }
 

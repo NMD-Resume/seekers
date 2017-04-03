@@ -23,7 +23,6 @@ class ResumeForm extends Component {
   }
 
   render() {
-
     const toListItem = (item) => <li key={item}>{item}</li>;
 
     // get only portfolio urls for now
@@ -77,7 +76,8 @@ class ResumeForm extends Component {
 
         <h4>Education</h4>
         <ul>{education}</ul>
-      
+        
+        <button type="button" className="btn btn-success btn-xs" onClick={() => window.location = '/newuser/' + this.props.resume.username}>Edit</button>
 
       </div>
     );

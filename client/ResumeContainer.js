@@ -8,16 +8,16 @@ import ResumeForm from './ResumeForm';
 import ResumeDisplay from './ResumeDisplay';
 import fetch from 'isomorphic-fetch';
 
-// temp urls for moving data b/w API
-// const getResumeUrl = 'http://localhost:3000/seek/derek';
-// const patchResumeUrl = 'http://localhost:3000/seek/derek';
 let user;
 let editing = false;
 
-if (window.location.pathname.substring(0,9) === '/edituser') {
-    user = window.location.pathname.slice(10);
+//Checks to see if client was routed from signup page
+if (window.location.pathname.substring(0,8) === '/newuser') {
+    //Slices off the username from the URL and allows immediate access to editing
+    user = window.location.pathname.slice(9);
     editing = true;
 } else {
+    //Slices off the username from the URL
     user = window.location.pathname.slice(6);
 }
 

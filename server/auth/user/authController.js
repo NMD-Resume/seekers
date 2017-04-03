@@ -68,6 +68,7 @@ authController.verifyUser = (req, res, next) => {
          sessionController.startSession(user);
          res.redirect('/user/' + req.body.username);
        } else {
+         //Sends the string 'Error' if the credentials do not match
          res.send('Error');
        }
    });
