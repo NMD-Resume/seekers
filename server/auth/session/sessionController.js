@@ -6,11 +6,9 @@ const sessionController = {};
 * isLoggedIn - find the appropriate session for this request in the database, then
 * verify whether or not the session is still valid.
 *
-*
 */
 sessionController.isLoggedIn = (req, res, next) => {
   Session.findOne({cookieId: req.cookies.ssid}, (err, result) => {
-    // console.log(result);
     if (result === null) {
       res.redirect('/signup');
     } else {
@@ -23,12 +21,14 @@ sessionController.isLoggedIn = (req, res, next) => {
 * startSession - create a new Session model and then save the new session to the
 * database.
 *
-*
 */
 sessionController.startSession = (result) => {
-  //write code here
   var session = new Session({cookieId: result._id});
   session.save();
+<<<<<<< HEAD
+=======
+
+>>>>>>> ca0eb8a9db57b7af273a50c0d2469140e3c6c86a
 };
 
 module.exports = sessionController;
