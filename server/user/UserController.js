@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 
 const UserController = {
 
-  // Get a student from the database and send it in the response
-  // Their first name will be in the request parameter 'name'
-  // This should send the found student
+  // Get a user from the database and send it in the response
+  // Their type will be in the requeset parameter 'type'
+  // Their username will be in the request parameter 'username'
+  // This should send the found user
   getUser(req, res, next) {
     let User;
     // getting type from route, /:type/:username
@@ -29,10 +30,10 @@ const UserController = {
     })
   },
 
-  // Get a student from the database and update the student
-  // The student's first name will be in the request parameter 'name'
-  // The student's new first name will be in the request body
-  // will move on to create user if can't find
+  // Get a user from the database and update the user
+  // The user's type will be in the request parameter 'type'
+  // The user's username will be in the request parameter 'username'
+  // The user's document will be updated with any new information from request body
   updateUser(req, res, next) {
     let User;
 
@@ -58,7 +59,9 @@ const UserController = {
   },
 
 
-  // create a resume if can't find one to update
+  // Create a resume based on provided information
+  // The user's type will be in the request parameter 'type'
+  // The user's username will be in the request parameter 'username'
   createResume(req, res, next) {
     let User;
 
@@ -83,9 +86,9 @@ const UserController = {
     })
   },
 
-  // Delete a student from the database
-  // The student's first name will be sent in the request parameter 'name'
-  // This should send a success status code
+  // Delete a user's resume information from the database
+  // The user's type will be in the request parameter 'type'
+  // The user's username will be in the request parameter 'username'
   deleteUser(req, res) {
     const User = Seek;
     if (req.body.type.toLowerCase() === 'seek') {

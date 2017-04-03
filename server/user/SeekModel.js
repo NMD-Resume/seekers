@@ -52,7 +52,6 @@ var contactSchema = new Schema({
 // A "username" that is String username of user
 // A "firstName" that is String firstname of user
 // A "lastName" that is String lastname of user
-// A "password" that is String bcrypt password of user
 // A "type" that is a String of type of user, seeker(job) or hunter(employer)
 // A "summary" that is a String of texts summarizing user profile
 // A "portfolio" that is String Array links to user project pages
@@ -60,7 +59,6 @@ var contactSchema = new Schema({
 // A "skills" that is a String Array of skills user wishes to display
 // An "experience" with subDocument "experienceSchema"
 // An "education" with subDocument "educationSchema"
-// TODO: add employer schema requirements (stage 3)
 const seekSchema = new Schema ({
   username: {type: String, required: true, unique: true},
   firstName: String,
