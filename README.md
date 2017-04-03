@@ -39,6 +39,10 @@ An online resume building tool for software developers. Think of it as a combina
 
 Here are some further development ideas we researched but were not able to implement on time.
 
+- [ ] Adding employer profile page
+
+- [ ] Add forum as market place for job postings
+
 - [ ] Add private DM chat with socket.io
 
 - [ ] Create a digital business card that a job seeker can send to employer
