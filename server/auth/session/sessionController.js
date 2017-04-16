@@ -25,10 +25,6 @@ sessionController.isLoggedIn = (req, res, next) => {
 sessionController.startSession = (result) => {
   var session = new Session({cookieId: result._id});
   session.save();
-<<<<<<< HEAD
-=======
-
->>>>>>> ca0eb8a9db57b7af273a50c0d2469140e3c6c86a
 };
 
 module.exports = sessionController;
