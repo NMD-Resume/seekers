@@ -21,8 +21,8 @@
     "socket.io": "^1.7.3"
   },
   "scripts": {
-    "start": "node server/server.js",
-    "devstart": "nodemon server/server.js",
+    "start": "node server",
+    "devstart": "nodemon server",
     "webpack": "webpack -w",
     "wds": "MODE=dev webpack-dev-server --progress"
   },

@@ -10,9 +10,10 @@ const cookieController = require('./auth/util/cookieController');
 const sessionController = require('./auth/session/sessionController');
 const userController = require('./user/UserController');
 
+const MONGO_URI = require('../shared/config').MONGO_URI;
 const PORT = 3000;
 
-mongoose.connect('mongodb://nmd:resume@ds113580.mlab.com:13580/nmd_resume');
+mongoose.connect(MONGO_URI);
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
@@ -93,6 +94,7 @@ app.get('/newuser/:username', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/../profile.html'));
 });
 
+// Serve static and compiled client files
 app.use(express.static(path.join(__dirname, '/../')));
 
 // 404 error
