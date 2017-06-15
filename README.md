@@ -1,4 +1,4 @@
-# We-Got-This / SeekHunt Resume Builder
+# Seeker Resume Builder
 
 # Overview
 
